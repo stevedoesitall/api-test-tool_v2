@@ -1,0 +1,24 @@
+{
+  "name": "api-test-tool_v2",
+  "version": "1.0.0",
+  "description": "<!DOCTYPE html> <html> <body> <h1>Academy Days Test Tool (NodeJS)</h1>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node scripts/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevedoesitall/api-test-tool_v2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevedoesitall/api-test-tool_v2/issues"
+  },
+  "homepage": "https://github.com/stevedoesitall/api-test-tool_v2#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "sailthru-client": "^3.0.2"
+  }
+}
