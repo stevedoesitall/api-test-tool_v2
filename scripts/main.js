@@ -217,7 +217,10 @@ $(content_blocks).hide();
         $.ajax({
             type: "POST",
             url: "/email",
-            data: { id : id, data : data_string }
+            data: { id : id, data : data_string },
+            success: function(data) { 
+                console.log(data);
+            }
             });
         }
     });
@@ -304,7 +307,10 @@ $(content_blocks).hide();
             $.ajax({
                 type: "POST",
                 url: "/email",
-                data: { id : id, data : data_string }
+                data: { id : id, data : data_string },
+                success: function(data) { 
+                    console.log(data);
+                }
             });
         }
     });
@@ -487,7 +493,10 @@ $(content_blocks).hide();
             $.ajax({
                 type: "POST",
                 url: "/email",
-                data: { id : id, data : data_string }
+                data: { id : id, data : data_string },
+                success: function(data) { 
+                    console.log(data);
+                }
             });
         }
     });
@@ -539,7 +548,10 @@ $(content_blocks).hide();
         $.ajax({
             type: "POST",
             url: "/email",
-            data: { id : id, data : data_string }
+            data: { id : id, data : data_string },
+            success: function(data) { 
+                console.log(data);
+            }
             });
         }
     });
@@ -629,7 +641,6 @@ $(content_blocks).hide();
                 alert(url + " has been respidered!");
                 data.content_type = "respider";
             }
-
             else if (this.id == "delete_submit") {
                 alert(url + " has been deleted");
                 data.content_type = "delete";
@@ -650,7 +661,10 @@ $(content_blocks).hide();
             $.ajax({
                 type: "POST",
                 url: "/email",
-                data: { id : id, data : data_string }
+                data: { id : id, data : data_string },
+                success: function(data) { 
+                    console.log(data);
+                }
             });
         }
     });
@@ -684,6 +698,7 @@ $(content_blocks).hide();
                 url: "/email",
                 data: { id : id, data : data_string },
                 success: function(data) { 
+                    console.log(data);
                     const user_cookie = data.keys.cookie;
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
                 }
