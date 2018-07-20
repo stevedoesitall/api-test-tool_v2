@@ -629,6 +629,11 @@ $(content_blocks).hide();
                 alert(url + " has been respidered!");
                 data.content_type = "respider";
             }
+
+            else if (this.id == "delete_submit") {
+                alert(url + " has been deleted");
+                data.content_type = "delete";
+            }
     
             if (tags) {
                 data.tags = tags.split(",").concat(tag_name);

@@ -11,10 +11,13 @@ const data_post = (data) => {
         api_params.id = data_parse.url;
 
     if (content_type == "publish") {
-        api_params.title = data_parse.title;
         api_params.keys = {};
             api_params.keys.sku = "SKU" + Math.random().toString(36).substr(2,9);
-            
+        
+        if (data_parse.title) {
+            api_params.title = data_parse.title;
+        }
+
         if (data_parse.var_name) {
             api_params.vars = {};
                 api_params.vars[data_parse.var_name] = data_parse.var_val;
@@ -62,17 +65,34 @@ const data_post = (data) => {
     //Sailthru variables
     const sailthru = require("sailthru-client").createSailthruClient(api_key, api_secret);
 
-    sailthru.apiPost("content", 
-        api_params, 
-        function(err,response) {
-            if (err) {
-                console.log(err);
+    if (content_type != "delete") {
+        sailthru.apiPost("content", 
+            api_params, 
+            function(err,response) {
+                if (err) {
+                    console.log(err);
+                }
+                else if (response) {
+                    console.log(response);
+                }
             }
-            else if (response) {
-                console.log(response);
+        );
+    }
+
+    else if (content_type == "delete") {
+        sailthru.apiDelete("content", 
+            api_params, 
+            function(err,response) {
+                if (err) {
+                    console.log(err);
+                }
+                else if (response) {
+                    console.log(response);
+                }
             }
-        }
-    );
+        );
+    }
+
 }
 
 module.exports = {
