@@ -767,7 +767,7 @@ $(content_blocks).hide();
             success: function(data) { 
                 console.log(data.content_html);
                 const user_recs = data.content_html;
-                console.log(typeof user_recs);
+                console.log(JSON.parse(user_recs));
             }
         });
     });
