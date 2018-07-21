@@ -10,7 +10,7 @@
     </head>
     <body>
         <div id="header">
-            <h1>Welcome to the Sailthru Academy Tester!</h1>
+            <h1>Welcome to the Sailthru Academy Test Tool!</h1>
             <a href="https://www.sailthru.com/sailthru-academy" target="_blank"><img id="emblem" src="https://media.sailthru.com/1/1k2/6/u/5b37ea02c66ae.png" alt="Academy Emblem"></a>
             <p id="intro"><span class="note">Note:</span> This tool allows you to make an API POST to the <a href="https://getstarted.sailthru.com/developers/api/user/" target="_blank">user</a>, <a href="https://getstarted.sailthru.com/developers/api/event/" target="_blank">event</a>, <a href="https://getstarted.sailthru.com/developers/api/content/" target="_blank">content</a>, <a href="https://getstarted.sailthru.com/developers/api/purchase/" target="_blank">purchase</a>/<a href="https://getstarted.sailthru.com/developers/api/return/" target="_blank">return</a>, and <a href="https://getstarted.sailthru.com/developers/api/send/" target="_blank">send</a> endpoints, as well as test the <a href="https://getstarted.sailthru.com/email/lo/automate-abandoned-cart-reminders/" target="_blank">cart</a> and <a href="https://getstarted.sailthru.com/email/lo/browse-abandon/" target="_blank">browse</a> abandon entries!</p>
         </div>
@@ -29,6 +29,12 @@
                 <a class="button_link" href="#options"><button id="cart" class="submit_button select_button">Cart</button></a>
                 <a class="button_link" href="#options"><button id="browse" class="submit_button select_button">Browse</button></a>
             </div>
+
+            <div class="test_module" id="preview_tester">
+                <h2>Get Recommendations:</h2>
+                <a class="button_link" href="#options"><button id="recs" class="submit_button select_button">Recs</button></a>
+            </div>
+
         </div>
         <div id="options">
                 
@@ -73,7 +79,7 @@
                     
                     <label>Var Name: <input name="user_var" type="text" id="user_var"/></label>
                     <label>Var Value: <input name="user_val" type="text" id="user_val"/></label>
-                    <label>SMS: <input name="sms" type="number" id="user_sms" class="user_keys"/></label>
+                    <label>SMS: <input name="sms" type="number" id="user_sms" class="user_keys"/></label>        
                     <label>EXTID: <input name="extid" type="text" id="user_extid" class="user_keys"/></label>
                     <!-- <label>Change Email: <input name="user_change" type="text" id="user_change" class="user_key"/></label> -->
                     <label>
@@ -136,9 +142,9 @@
                     <p class="note required">Required:</p>
                     
                     <label>URL: <input name="content_url" type="text" id="content_url"/></label>
-                    
-                    <p class="note optional">Optional <span class="note">(Publish)</span>:</p>
                     <label>Title: <input name="content_title" type="text" id="content_title"/></label>
+                    
+                    <p class="note optional">Optional:</p>
                     <label>Tags <span class="note">(Comma Delineate)</span>: <input name="content_tags" type="text" id="content_tags"/></label>
                     <label>Image URL: <input name="content_image" type="text" id="content_image"/></label>
                     <label>Var Name: <input name="content_var" type="text" id="content_var"/></label>
@@ -152,7 +158,6 @@
             
                     <button class="submit_button confirm_button content_submit" id="publish_submit">Publish</button>
                     <button class="submit_button confirm_button content_submit" id="respider_submit">Respider</button>
-                    <button class="submit_button confirm_button content_submit" id="delete_submit">Delete</button>
             </div>
 
             <div id="browse_post" class="content_block">
@@ -171,6 +176,37 @@
                     <label>Email Address: <input name="email" type="text" id="cart_email"/></label>
             
                     <button class="submit_button confirm_button" id="cart_submit">Submit</button>
+            </div>
+
+            <div id="recs_post" class="content_block">
+
+                <h3>Recommendations</h3>
+        
+                <label>Email Address: <input name="email" type="text" id="recs_email"/></label>
+
+                <div id="rec_selections">
+                <select id="rec_dropdown">
+                        <option value="interest">Valid</option>
+                        <option value="popular">Marketing Emails</option>
+                        <option value="trending">All Emails</option>
+                        <option value="random">All Emails</option>
+                        <option value="prediction">All Emails</option>
+                        <option value="purchased">All Emails</option>
+                        <option value="viewed">All Emails</option>
+                </select>
+
+                <select id="user_dropdown">
+                        <option value="jashton">James</option>
+                        <option value="snoel">Stephen</option>
+                        <option value="snewman">Sara</option>
+                        <option value="tkeelan">Tim</option>
+                        <option value="kpetersen">Kelly</option>
+                        <option value="ssalter">Scott</option>
+                </select>
+
+                </div>
+        
+                <button class="submit_button confirm_button" id="recs_submit">Submit</button>
             </div>
 
         </div>
