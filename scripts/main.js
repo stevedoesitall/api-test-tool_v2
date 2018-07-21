@@ -766,7 +766,7 @@ $(content_blocks).hide();
             data: { id : id, data : data_string },
             success: function(data) { 
                 console.log(data.content_html);
-                const user_recs = JSON.parse(data.content_html);
+                const user_recs = data.content_html;
                 console.log(user_recs[algorithm]);
             }
         });
