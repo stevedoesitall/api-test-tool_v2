@@ -765,27 +765,28 @@ $(content_blocks).hide();
             url: "/email",
             data: { id : id, data : data_string },
             success: function(data) {
+                let num;
                 switch (algorithm) {
                     case "popular":
-                        const num = 0;
+                        num = 0;
                         break;
                     case "interest":
-                        const num = 1;
+                        num = 1;
                         break;
                     case "purchased":
-                        const num = 2;
+                        num = 2;
                         break;
                     case "viewed":
-                        const num = 3;
+                        num = 3;
                         break;
                     case "random":
-                        const num = 4;
+                        num = 4;
                         break;
                     case "prediction":
-                        const num = 5;
+                        num = 5;
                         break;
                     case "trending":
-                        const num = 6;
+                        num = 6;
                         break;
                 }
                 console.log(data.content_html);
