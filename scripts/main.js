@@ -745,6 +745,28 @@ $(content_blocks).hide();
                 }
             });
         }
-    });    
+    });
+
+    $("#recs_submit").on("click", function submit_form() {
+        const id = "recs";
+        const user 
+        const algorithm = document.getElementById("rec_dropdown").value;
+    
+        const data = {};
+        data.email = email;
+
+        const data_string = JSON.stringify(data);
+        
+        console.log("Getting recs...", data);
+        
+        $.ajax({
+            type: "POST",
+            url: "/email",
+            data: { id : id, data : data_string },
+            success: function(data) { 
+                console.log(data);
+            }
+        });
+    });
 
 });
