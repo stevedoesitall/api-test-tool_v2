@@ -766,7 +766,7 @@ $(content_blocks).hide();
             data: { id : id, data : data_string },
             success: function(data) { 
                 console.log(data.content_html);
-                console.log("Rec is " + algorithm, data.content_html.recommendations);
+                console.log("Rec is " + algorithm, data.content_html[algorithm]);
             }
         });
     });
