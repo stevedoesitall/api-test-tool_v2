@@ -749,11 +749,12 @@ $(content_blocks).hide();
 
     $("#recs_submit").on("click", function submit_form() {
         const id = "recs";
-        const user 
+        const rec_user = document.getElementById("rec_user").value;
         const algorithm = document.getElementById("rec_dropdown").value;
     
         const data = {};
-        data.email = email;
+        data.email = rec_user + "@sailthru.com"
+        data.algorithm = algorithm;
 
         const data_string = JSON.stringify(data);
         
