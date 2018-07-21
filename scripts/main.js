@@ -793,9 +793,9 @@ $(content_blocks).hide();
                 const user_recs = data.content_html;
                 const parsed_content = JSON.parse(user_recs);
                 console.log(parsed_content[num]);
-                // parsed_content[num].forEach(content => {
-                //     document.getElementById("recs_content").innerHTML('<p>' + content.title + '</p>');
-                // });
+                parsed_content[num].forEach(content => {
+                    document.getElementById("recs_content").innerHTML('<p>' + content.title + '</p>');
+                });
             }
         });
     });
