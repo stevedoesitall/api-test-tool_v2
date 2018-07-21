@@ -764,10 +764,36 @@ $(content_blocks).hide();
             type: "POST",
             url: "/email",
             data: { id : id, data : data_string },
-            success: function(data) { 
+            success: function(data) {
+                switch (algorithm) {
+                    case "popular":
+                        const num = 0;
+                        break;
+                    case "interest":
+                        const num = 1;
+                        break;
+                    case "purchased":
+                        const num = 2;
+                        break;
+                    case "viewed":
+                        const num = 3;
+                        break;
+                    case "random":
+                        const num = 4;
+                        break;
+                    case "prediction":
+                        const num = 5;
+                        break;
+                    case "trending":
+                        const num = 6;
+                        break;
+                }
                 console.log(data.content_html);
                 const user_recs = data.content_html;
-                console.log(JSON.parse(user_recs));
+                const parsed_content = JSON.parse(user_recs[num]);
+                parsed_content.forEach(content => {
+                    document.getElementById("recs_content").innerHTML('<p>' + content.title + '</p>');
+                });
             }
         });
     });
