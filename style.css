@@ -140,7 +140,7 @@ a:hover {
     .rec_image {
         width: 10em;
         height: 10em;
-        padding-bottom: 2em;
+        margin-bottom: 3em;
     }
 }
 
