@@ -90,8 +90,8 @@ a:hover {
 }
 
 .rec_image {
-    width: 15em;
-    height: 15em;
+    width: 10em;
+    height: 10em;
     border-style: solid;
     border-color: #FF7200;
 }
@@ -136,6 +136,11 @@ a:hover {
         width: 50%;
         margin-bottom: .5em;
     }
+
+    .rec_image {
+        width: 10em;
+        height: 10em;
+    }
 }
 
 @media only screen and (max-width: 300px) {
@@ -179,5 +184,10 @@ a:hover {
         margin: auto;
         width: 100%;
         margin-bottom: .5em;
+    }
+
+    .rec_image {
+        width: 5em;
+        height: 5em;
     }
 }
