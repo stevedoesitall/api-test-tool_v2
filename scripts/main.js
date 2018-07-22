@@ -116,7 +116,7 @@ const content_blocks = document.querySelectorAll(".content_block");
 $(content_blocks).hide();
 
     $(".select_button").on("click", function get_content() {
-        $( "#recs_list" ).empty();
+        $("#recs_list").empty();
         content_blocks.forEach(content => {
             if (content.id == this.id + "_post") {
                 $(content).show();
@@ -749,7 +749,8 @@ $(content_blocks).hide();
     });
 
     $("#recs_submit").on("click", function submit_form() {
-        $( "#recs_list" ).empty();
+        $("#recs_list").empty();
+        $("div").removeClass("recs_message");
         const id = "recs";
         const rec_user = document.getElementById("rec_user").value;
         const rec_name = document.getElementById("rec_user").name;
@@ -796,6 +797,7 @@ $(content_blocks).hide();
                 const user_recs = data.content_html;
                 const parsed_content = JSON.parse(user_recs);
                 console.log(parsed_content[num]);
+                $("div").addClass("recs_message");
                 if (parsed_content[num].length < 1) {
                     $("#recs_list").append("<p>No " + algorithm + " recommendations for this user.</p>");
                 }

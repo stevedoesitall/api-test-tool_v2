@@ -68,6 +68,10 @@ a:hover {
     color: #FF7200;
 }
 
+.recs_message {
+    display: none;
+}
+
 .note {
     font-weight: bold;
     color: #87878A;
