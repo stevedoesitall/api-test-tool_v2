@@ -94,6 +94,7 @@ a:hover {
     height: 10em;
     border-style: solid;
     border-color: #FF7200;
+    padding-bottom: 2em;
 }
 
 .submit_button {
@@ -140,7 +141,6 @@ a:hover {
     .rec_image {
         width: 10em;
         height: 10em;
-        margin-bottom: 3em;
     }
 }
 
