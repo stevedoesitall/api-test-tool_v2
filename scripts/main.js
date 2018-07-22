@@ -797,7 +797,7 @@ $(content_blocks).hide();
                 const parsed_content = JSON.parse(user_recs);
                 console.log(parsed_content[num]);
                 if (parsed_content[num].length < 1) {
-                    $("#recs_list").append("<p>No " + algorithm + " recommendations for " + rec_name + "</p>");
+                    $("#recs_list").append("<p>No " + algorithm + " recommendations for this user.</p>");
                 }
                 else {
                     parsed_content[num].forEach(content => {
