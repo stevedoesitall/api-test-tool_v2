@@ -116,6 +116,7 @@ const content_blocks = document.querySelectorAll(".content_block");
 $(content_blocks).hide();
 
     $(".select_button").on("click", function get_content() {
+        $( "#recs_list" ).empty();
         content_blocks.forEach(content => {
             if (content.id == this.id + "_post") {
                 $(content).show();
@@ -765,7 +766,6 @@ $(content_blocks).hide();
             url: "/email",
             data: { id : id, data : data_string },
             success: function(data) {
-                $( "#recs_list" ).empty();
                 let num;
                 switch (algorithm) {
                     case "popular":
@@ -795,7 +795,7 @@ $(content_blocks).hide();
                 const parsed_content = JSON.parse(user_recs);
                 console.log(parsed_content[num]);
                 parsed_content[num].forEach(content => {
-                    $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' src='" + content.image + "'>");
+                    $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='" + content.title + "' src='" + content.image + "'>");
                 });
             }
         });
