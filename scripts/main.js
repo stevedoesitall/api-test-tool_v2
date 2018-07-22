@@ -67,11 +67,8 @@ get_data = ( function() {
                 });
             }
 
-            const retr_message = document.getElementById("retr_message");
-            if (retr_message != null) {
-                retr_message.parentNode.removeChild(retr_message);
-                $("#user_dropdown").removeClass("dropdown");
-            }
+            $("#retr_lists").addClass("recs_message");
+            $("#user_dropdown").removeClass("dropdown");
         }
     });
     
@@ -104,10 +101,9 @@ get_data = ( function() {
         }
     });
     const retr_message = document.getElementById("retr_message");
-    if (retr_message != null) {
-        retr_message.parentNode.removeChild(retr_message);
-        $("#send_dropdown").removeClass("dropdown");
-    }
+
+    $("#retr_templates").addClass("recs_message");
+    $("#sned_dropdown").removeClass("dropdown");
 } () );
 
 
