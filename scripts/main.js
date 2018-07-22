@@ -807,5 +807,4 @@ $(content_blocks).hide();
             }
         });
     });
-
 });
