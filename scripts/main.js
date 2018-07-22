@@ -801,7 +801,7 @@ $(content_blocks).hide();
                 }
                 else {
                     parsed_content[num].forEach(content => {
-                        $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='" + content.title + "' src='" + content.image + "'>");
+                        $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
                     });
                 }
             }
