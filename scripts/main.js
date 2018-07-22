@@ -752,6 +752,7 @@ $(content_blocks).hide();
         $( "#recs_list" ).empty();
         const id = "recs";
         const rec_user = document.getElementById("rec_user").value;
+        const rec_name = document.getElementById("rec_user").name;
         const algorithm = document.getElementById("rec_dropdown").value;
     
         const data = {};
@@ -795,9 +796,14 @@ $(content_blocks).hide();
                 const user_recs = data.content_html;
                 const parsed_content = JSON.parse(user_recs);
                 console.log(parsed_content[num]);
-                parsed_content[num].forEach(content => {
-                    $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='" + content.title + "' src='" + content.image + "'>");
-                });
+                if (parsed_content[num].length < 1) {
+                    $("#recs_list").append("<p>No " + algorithm + " recommendations for " + rec_name + "</p>");
+                }
+                else {
+                    parsed_content[num].forEach(content => {
+                        $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='" + content.title + "' src='" + content.image + "'>");
+                    });
+                }
             }
         });
     });
