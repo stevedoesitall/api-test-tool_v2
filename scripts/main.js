@@ -795,7 +795,7 @@ $(content_blocks).hide();
                 const parsed_content = JSON.parse(user_recs);
                 console.log(parsed_content[num]);
                 parsed_content[num].forEach(content => {
-                    $("#recs_list").append("<p><a href='" + content.url + "'>" + content.title + "</a></p>");
+                    $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' src='" + content.image + "'>");
                 });
             }
         });
