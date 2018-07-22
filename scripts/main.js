@@ -749,6 +749,7 @@ $(content_blocks).hide();
     });
 
     $("#recs_submit").on("click", function submit_form() {
+        $( "#recs_list" ).empty();
         const id = "recs";
         const rec_user = document.getElementById("rec_user").value;
         const algorithm = document.getElementById("rec_dropdown").value;
