@@ -92,6 +92,8 @@ a:hover {
 .rec_image {
     width: 200px;
     height: 200px;
+    border-style: solid;
+    border-color: #FF7200;
 }
 
 .submit_button {
@@ -112,10 +114,6 @@ a:hover {
     color: #00CCED;
     background-color: #FFFFFF;
 }
-
-/* .dropdown {
-    display: none;
-} */
 
 @media only screen and (max-width: 768px) {
     #main {
