@@ -94,7 +94,7 @@ a:hover {
     height: 10em;
     border-style: solid;
     border-color: #FF7200;
-    padding-bottom: 2em;
+    margin-bottom: 1em;
 }
 
 .submit_button {
