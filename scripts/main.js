@@ -749,12 +749,11 @@ $(content_blocks).hide();
         $("#retr_recs").removeClass("recs_message");
         const id = "recs";
         const rec_user = document.getElementById("rec_user").value;
-        const rec_name = document.getElementById("rec_user").name;
         const algorithm = document.getElementById("rec_dropdown").value;
     
         const data = {};
-        data.email = rec_user + "@sailthru.com"
-        data.algorithm = algorithm;
+            data.email = rec_user + "@sailthru.com";
+            data.algorithm = algorithm;
 
         const data_string = JSON.stringify(data);
         
@@ -789,10 +788,9 @@ $(content_blocks).hide();
                         num = 6;
                         break;
                 }
-                console.log(data.content_html);
+                console.log("Retrieving " + algorithm + " recommendations...");
                 const user_recs = data.content_html;
                 const parsed_content = JSON.parse(user_recs);
-                console.log(parsed_content[num]);
                 $("#retr_recs").addClass("recs_message");
                 if (parsed_content[num].length < 1) {
                     $("#recs_list").append("<p>No " + algorithm + " recommendations for this user.</p>");
