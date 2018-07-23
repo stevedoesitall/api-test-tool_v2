@@ -756,9 +756,7 @@ $(content_blocks).hide();
             data.algorithm = algorithm;
 
         const data_string = JSON.stringify(data);
-        
-        console.log("Getting recs...", data);
-        
+                
         $.ajax({
             type: "POST",
             url: "/email",
