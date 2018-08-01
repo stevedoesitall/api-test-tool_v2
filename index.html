@@ -35,6 +35,11 @@
                 <a class="button_link" href="#options"><button id="recs" class="submit_button select_button">Recs</button></a>
             </div>
 
+            <div class="test_module" id="blast_tester">
+                <h2>Send a Breaking Alert:</h2>
+                <a class="button_link" href="#options"><button id="blast" class="submit_button select_button">Blast</button></a>
+            </div>
+
         </div>
         <div id="options">
                 
@@ -216,7 +221,21 @@
                 <button class="submit_button confirm_button" id="recs_submit">Preview</button>
             </div>
 
+            <div id="blast_post" class="content_block">
+        
+                <h3>Send Blast</h3>
+        
+                <label>URL: <input name="blast_url" type="text" id="blast_url"/></label>
+                <label>Author: <input name="blast_author" type="text" id="blast_author"/></label>
+                <label>Title: <input name="blast_title" type="text" id="blast_title"/></label>
+                <label>Description: <input name="blast_desc" type="text" id="blast_desc"/></label>
+
+                <button class="submit_button confirm_button" id="blast_submit">Blast</button>
+            </div>
+
         </div>
+
+        
  
         <div id="footer">
             <a href="https://www.sailthru.com/" target="_blank"><img id="logo" src="https://media.sailthru.com/2y8/1k2/6/o/5b305cf5d2338.png" alt="Sailthru Logo"></a>
