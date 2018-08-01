@@ -827,7 +827,7 @@ $(content_blocks).hide();
         }
     
         else {
-            alert("Breaking alert has been sent for " + title + "!");
+            alert("Breaking alert has been sent for " + blast_title + "!");
             const data = {};
                 data.url = blast_url;
                 data.author = blast_author;
