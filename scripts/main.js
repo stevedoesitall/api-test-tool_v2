@@ -801,4 +801,52 @@ $(content_blocks).hide();
             }
         });
     });
+
+    $("#blast_submit").on("click", function submit_form() {
+        const id = "blast";
+        const blast_url = document.getElementById("blast_url");
+        const blast_author = document.getElementById("blast_author");
+        const blast_title = document.getElementById("blast_title");
+        const blast_desc = document.getElementById("blast_desc");
+    
+        if (blast_url == "") {
+            alert("Please enter a URL.");
+            return false;
+        }
+        else if (blast_author == "") {
+            alert("Please enter an author name.");
+            return false;
+        }
+        else if (blast_title == "") {
+            alert("Please enter a title.");
+            return false;
+        }
+        else if (blast_desc == "") {
+            alert("Please enter a description.");
+            return false;
+        }
+    
+        else {
+            alert("Breaking alert has been sent for " + title + "!");
+            const data = {};
+                data.url = blast_url;
+                data.author = blast_author;
+                data.title = blast_title;
+                data.description = blast_desc;
+    
+            const data_string = JSON.stringify(data);
+            
+            console.log("Blast API running...", data);
+            
+            $.ajax({
+                type: "POST",
+                url: "/email",
+                data: { id : id, data : data_string },
+                success: function(data) { 
+                    console.log(data);
+                }
+            });
+        }
+    });
+
 });
