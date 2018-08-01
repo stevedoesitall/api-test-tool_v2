@@ -804,10 +804,10 @@ $(content_blocks).hide();
 
     $("#blast_submit").on("click", function submit_form() {
         const id = "blast";
-        const blast_url = document.getElementById("blast_url");
-        const blast_author = document.getElementById("blast_author");
-        const blast_title = document.getElementById("blast_title");
-        const blast_desc = document.getElementById("blast_desc");
+        const blast_url = document.getElementById("blast_url").value;;
+        const blast_author = document.getElementById("blast_author").value;;
+        const blast_title = document.getElementById("blast_title").value;;
+        const blast_desc = document.getElementById("blast_desc").value;;
     
         if (blast_url == "") {
             alert("Please enter a URL.");
