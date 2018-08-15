@@ -103,7 +103,7 @@ get_data = ( function() {
     const retr_message = document.getElementById("retr_message");
 
     $("#retr_templates").addClass("recs_message");
-    $("#sned_dropdown").removeClass("dropdown");
+    $("#send_dropdown").removeClass("dropdown");
 } () );
 
 
