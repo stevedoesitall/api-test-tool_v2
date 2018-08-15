@@ -1,4 +1,4 @@
-$( document ).ready(function() {
+document.addEventListener("DOMContentLoaded", function() {
     const user_lists = [];
     const non_master_lists = [];
     const master_lists = [];
@@ -107,21 +107,25 @@ get_data = ( function() {
 } () );
 
 
-const content_blocks = document.querySelectorAll(".content_block");
+    const content_blocks = document.querySelectorAll(".content_block");
 
-$(content_blocks).hide();
+    content_blocks.forEach(content => {
+        content.style.display = "none";
+    }); 
+
 
     $(".select_button").on("click", function get_content() {
         $("#recs_list").empty();
         content_blocks.forEach(content => {
             if (content.id == this.id + "_post") {
-                $(content).show();
+                content.style.display = "";
             }
             else {
-                $(content).hide();
+                content.style.display = "none";
             }
-        }); 
+        });
     });
+
     
     $("#send_submit").on("click", function submit_form() {
     
@@ -237,11 +241,7 @@ $(content_blocks).hide();
     
         let locale = window.navigator.language;
             locale = locale.replace("-","_");
-    
-        //Easter Ann info
-        const img_url = "https://media.sailthru.com/3p0/1k2/6/u/5b37e7eb28e02.png";
-        const params = { height: "20em" };
-    
+
         if (email == "") {
             alert("Please enter an email address.");
             return false;
@@ -275,10 +275,6 @@ $(content_blocks).hide();
             if (!user_var && user_val) {
                 alert("Please enter a value for " + user_val + ".");
                 return false;
-            }
-    
-            if (user_var.toLowerCase() == "old" && user_val.toLowerCase() == "school") {
-                $("#logo").attr("src", img_url).animate(params);
             }
     
             if (keys_length.length > 0) {
