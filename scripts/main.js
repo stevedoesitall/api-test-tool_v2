@@ -63,7 +63,10 @@ get_data = ( function() {
             console.log(all_lists);
             if (!lists_list.length > 0) {
                 all_lists.forEach(list => {
-                    document.getElementById("user_lists").innerHTML('<option value="'+ list + '">' + list + "</option>");
+                    const option = document.createElement("option");
+                    option.innerHTML = list;
+                    document.getElementById("user_lists").appendChild(option);
+                    // $("#user_lists").append('<option value="'+ list + '">' + list + "</option>");
                 });
             }
 
