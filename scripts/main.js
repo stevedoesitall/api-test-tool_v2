@@ -66,7 +66,6 @@ get_data = ( function() {
                     const option = document.createElement("option");
                     option.innerHTML = list;
                     document.getElementById("user_lists").appendChild(option);
-                    // $("#user_lists").append('<option value="'+ list + '">' + list + "</option>");
                 });
             }
 
@@ -97,8 +96,9 @@ get_data = ( function() {
             const template_list =  document.getElementById("send_templates");
             if (!template_list.length > 0) {
                 send_templates.forEach(template => {
-                    const template_name = template.name;
-                    $("#send_templates").append('<option value="'+ template_name + '">' + template_name + "</option>");
+                    const option = document.createElement("option");
+                    option.innerHTML = template.name;
+                    document.getElementById("send_templates").appendChild(option);
                 });
             }
         }
@@ -797,11 +797,19 @@ get_data = ( function() {
                 const parsed_content = JSON.parse(user_recs);
                 document.getElementById("retr_recs").classList.add("recs_message");
                 if (parsed_content[num].length < 1) {
-                    $("#recs_list").append("<p>No " + algorithm + " recommendations for this user.</p>");
+                    const p = document.createElement("p");
+                    p.innerHTML = "No " + algorithm + " recommendations for this user.";
+                    document.getElementById("recs_list").appendChild(p);
                 }
                 else {
                     parsed_content[num].forEach(content => {
                         $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
+
+
+                        const p = document.createElement("p");
+                        p.innerHTML = "No " + algorithm + " recommendations for this user.";
+                        document.getElementById("recs_list").appendChild(p);
+
                     });
                 }
             }
