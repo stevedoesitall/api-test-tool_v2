@@ -67,8 +67,8 @@ get_data = ( function() {
                 });
             }
 
-            $("#retr_lists").addClass("recs_message");
-            $("#user_dropdown").removeClass("dropdown");
+            document.getElementById("retr_lists").classList.add("recs_message");
+            document.getElementById("user_dropdown").classList.remove("dropdown");
         }
     });
     
@@ -102,8 +102,10 @@ get_data = ( function() {
     });
     const retr_message = document.getElementById("retr_message");
 
-    $("#retr_templates").addClass("recs_message");
-    $("#send_dropdown").removeClass("dropdown");
+
+    document.getElementById("retr_templates").classList.add("recs_message");
+    document.getElementById("send_dropdown").classList.remove("dropdown");
+
 } () );
 
 
@@ -113,32 +115,34 @@ get_data = ( function() {
         content.style.display = "none";
     }); 
 
+    document.addEventListener("click", function get_content(event) {
+        if (event.target.classList.contains("select_button")) {
+            console.log(event.target.id);
+            const button = event.target;
+            document.getElementById("recs_list").innerHTML = "";
+            content_blocks.forEach(content => {
+                if (content.id == button.id + "_post") {
+                    content.style.display = "";
+                }
+                else {
+                    content.style.display = "none";
+                }
+            });
+        }
+    }, false);
 
-    $(".select_button").on("click", function get_content() {
-        $("#recs_list").empty();
-        content_blocks.forEach(content => {
-            if (content.id == this.id + "_post") {
-                content.style.display = "";
-            }
-            else {
-                content.style.display = "none";
-            }
-        });
-    });
-
-    
-    $("#send_submit").on("click", function submit_form() {
-    
+    document.getElementById("send_submit").addEventListener("click", function submit_form() {
         const id = "send";
             console.log(id + ".js script initiated.");
-        let email = $("#" + id + "_email").val();
-        const template = $("#" + id + "_templates").val();
-        const send_var = $("#" + id + "_var").val();
-        const send_val = $("#" + id + "_val").val();
-        const send_cc = $("#" + id + "_cc").val();
-        const send_bcc = $("#" + id + "_bcc").val();
-        const send_replyto = $("#" + id + "_replyto").val();
-        const send_behalfof = $("#" + id + "_behalfof").val();
+            document.getElementById().value;
+        let email = document.getElementById("send_email").value;
+        const template = document.getElementById("send_templates").value;
+        const send_var = document.getElementById("send_var").value;
+        const send_val = document.getElementById("send_val").value;
+        const send_cc = document.getElementById("send_cc").value;
+        const send_bcc = document.getElementById("send_bcc").value;
+        const send_replyto = document.getElementById("send_replyto").value;
+        const send_behalfof = document.getElementById("send_behalfof").value;
     
         if (email == "s") {
             email = "steve@sailthru.com";
@@ -226,15 +230,15 @@ get_data = ( function() {
         }
     });
 
-    $("#user_submit").on("click", function submit_form() {
+    document.getElementById("user_submit").addEventListener("click", function submit_form() {
         
         const id = "user";
             console.log(id + ".js script initiated.");
-        const email = $("#" + id + "_email").val();
-        const list = $("#" + id + "_lists").val();
-        const user_var = $("#" + id + "_var").val();
-        const user_val = $("#" + id + "_val").val();
-        const user_status = $("#" + id + "_status").val();
+        const email = document.getElementById("user_email").value;
+        const list = document.getElementById("user_lists").value;
+        const user_var = document.getElementById("user_var").value;
+        const user_val = document.getElementById("user_val").value;
+        const user_status = document.getElementById("user_status").value;
     
         const keys_length = document.getElementsByClassName("user_keys");
         const keys = document.querySelectorAll(".user_keys");
@@ -307,201 +311,204 @@ get_data = ( function() {
             });
         }
     });
-    
-    $(".purchase_submit").on("click", function submit_form() {
 
-        const id = "purchase";
-            console.log(id + ".js script initiated.");
-        const email = $("#" + id + "_email").val();
-        const url = $("#" + id + "_url").val();
-        const title = $("#" + id + "_title").val();
-        const tags = $("#" + id + "_tags").val();
-        const image = $("#" + id + "_image").val();
-        const qty = $("#" + id + "_qty").val();
-        const price = $("#" + id + "_price").val();
-        const purchase_var = $("#" + id + "_var").val();
-        const purchase_val = $("#" + id + "_val").val();
-        const messageid = $("#" + id + "_messageid").val();
-        const ordervar = $("#" + id + "_ordervar").val();
-        const orderval = $("#" + id + "_orderval").val();
-    
-        const adjustment_length = document.getElementsByClassName("purchase_adjustments");
-        const adjustments = document.querySelectorAll(".purchase_adjustments");
-        console.log("Adjustments length", adjustment_length);
-    
-        const tag_name = [];
-        tag_name.push("academy-days");
-    
-        let incomplete;
-        let returned;
-        let cart_empty;
-    
-        if (this.id == "incomplete_purchase" || this.id == "clear_purchase") {
-            incomplete = 1;
-        }
-        else {
-            incomplete = 0;
-        }
-    
-        if (this.id == "clear_purchase") {
-            cart_empty = true;
-        }
-        else {
-            cart_empty = false;
-        }
-    
-        if (this.id == "return_purchase") {
-            returned = true;
-        }
-        else {
-            returned = false;
-        }
-    
-        if (email == "") {
-            alert("Please enter an email address.");
-            return false;
-        }
-        else if (email.indexOf("@") == -1) {
-            alert(email + " is not a valid email address.");
-            return false;
-        }
-    
-        if (!url && this.id != "clear_purchase") {
-            alert("Please enter a URL.");
-            return false;
-        }
-    
-        if (!title && this.id != "clear_purchase") {
-            alert("Please enter a title.");
-            return false;
-        }
-    
-        if (!qty > 0 && this.id != "clear_purchase") {
-            alert("Please enter a quantity greater than 0.");
-            return false;
-        }
-    
-        if (!price > 0 && this.id != "clear_purchase") {
-            alert("Please enter a price greater than 0.");
-            return false;
-        }
-    
-        else {
-            const data = {};
-            data.email = email;
-            data.url = url;
-            data.title = title;
-            data.qty = qty;
-            data.price = price;
-            data.incomplete = incomplete;
-            data.cart_empty = cart_empty;
-            data.returned = returned;
-    
-            if (tags) {
-                data.tags = tags.split(",").concat(tag_name);
+    document.addEventListener("click", function submit_form(event) {
+        if (event.target.classList.contains("purchase_submit")) {
+            const id = "purchase";
+                console.log(id + ".js script initiated.");
+            const email = document.getElementById("purchase_email").value;
+            const url = document.getElementById("purchase_url").value;
+            const title = document.getElementById("purchase_title").value;
+            const tags = document.getElementById("purchase_tags").value;
+            const image = document.getElementById("purchase_image").value;
+            const qty = document.getElementById("purchase_qty").value;
+            const price = document.getElementById("purchase_price").value;
+            const purchase_var = document.getElementById("purchase_var").value;
+            const purchase_val = document.getElementById("purchase_val").value;
+            const messageid = document.getElementById("purchase_messageid").value;
+            const ordervar = document.getElementById("purchase_ordervar").value;
+            const orderval = document.getElementById("purchase_orderval").value;
+        
+            const adjustment_length = document.getElementsByClassName("purchase_adjustments");
+            const adjustments = document.querySelectorAll(".purchase_adjustments");
+            console.log("Adjustments length", adjustment_length);
+        
+            const tag_name = [];
+            tag_name.push("academy-days");
+        
+            let incomplete;
+            let returned;
+            let cart_empty;
+        
+            if (this.id == "incomplete_purchase" || this.id == "clear_purchase") {
+                incomplete = 1;
             }
             else {
-                data.tags = tag_name;
+                incomplete = 0;
             }
-    
-            if (ordervar && orderval) {
-                data.ordervar = ordervar;
-                data.orderval = orderval;
-            }
-    
-            if (messageid) {
-                data.messageid = messageid;
-            }
-    
-            if (purchase_var && purchase_val) {
-                data.var_name = purchase_var;
-                data.var_val = purchase_val;
-            }
-    
-            if (image) {
-                data.image = image;
-            }
-    
-            if (purchase_var && !purchase_val && returned == false) {
-                alert("Please enter a value for Purchase Value.");
-                return false
-            }
-    
-            if (!purchase_var && purchase_val && returned == false) {
-                alert("Please enter a value for Purchase Var.");
-                return false
-            }
-    
-    
-            if (ordervar && !orderval && returned == false) {
-                alert("Please enter a value for Order Value.");
-                return false
-            }
-    
-            if (!ordervar && orderval && returned == false) {
-                alert("Please enter a value for Order Var.");
-                return false
-            }
-    
-            if (adjustment_length.length > 0) {
-                data.adjustments = [];
-                adjustments.forEach(adjustment => {
-                    if (adjustment.name == "tax" && !(adjustment.value > 0) && (adjustment.value != "") && returned == false) {
-                        alert("Tax must be a positive number.");
-                        return false;
-                    }
-                    else if (adjustment.name == "tax" && (adjustment.value != "")) {
-                        data.adjustments.push({name: "tax", "price" : adjustment.value});
-                    }
-    
-                    if (adjustment.name == "discount" && !(adjustment.value < 0) && (adjustment.value != "") && returned == false) {
-                        alert("Discount must be a negative number.");
-                        return false;
-                    }
-                    else if (adjustment.name == "discount" && (adjustment.value != "")) {
-                        data.adjustments.push({name: "discount", "price" : adjustment.value});
-                    }
-                }); 
-                console.log("Adjustments", data.adjustments);
-            }
-    
-    
-            if (this.id == "incomplete_purchase") {
-                alert(title + " has been added to your cart!");
-            }
-            else if (this.id == "return_purchase") {
-                alert(title + " has been returned!");
-            }
-            else if (this.id == "clear_purchase") {
-                alert("Your cart has been emptied!");
+        
+            if (this.id == "clear_purchase") {
+                cart_empty = true;
             }
             else {
-                alert(title + " has been purchased!");
+                cart_empty = false;
             }
-    
-            const data_string = JSON.stringify(data);
-    
-            console.log("Purchase API running...", data);
-            
-            $.ajax({
-                type: "POST",
-                url: "/email",
-                data: { id : id, data : data_string },
-                success: function(data) { 
-                    console.log(data);
+        
+            if (this.id == "return_purchase") {
+                returned = true;
+            }
+            else {
+                returned = false;
+            }
+        
+            if (email == "") {
+                alert("Please enter an email address.");
+                return false;
+            }
+            else if (email.indexOf("@") == -1) {
+                alert(email + " is not a valid email address.");
+                return false;
+            }
+        
+            if (!url && this.id != "clear_purchase") {
+                alert("Please enter a URL.");
+                return false;
+            }
+        
+            if (!title && this.id != "clear_purchase") {
+                alert("Please enter a title.");
+                return false;
+            }
+        
+            if (!qty > 0 && this.id != "clear_purchase") {
+                alert("Please enter a quantity greater than 0.");
+                return false;
+            }
+        
+            if (!price > 0 && this.id != "clear_purchase") {
+                alert("Please enter a price greater than 0.");
+                return false;
+            }
+        
+            else {
+                const data = {};
+                data.email = email;
+                data.url = url;
+                data.title = title;
+                data.qty = qty;
+                data.price = price;
+                data.incomplete = incomplete;
+                data.cart_empty = cart_empty;
+                data.returned = returned;
+        
+                if (tags) {
+                    data.tags = tags.split(",").concat(tag_name);
                 }
-            });
+                else {
+                    data.tags = tag_name;
+                }
+        
+                if (ordervar && orderval) {
+                    data.ordervar = ordervar;
+                    data.orderval = orderval;
+                }
+        
+                if (messageid) {
+                    data.messageid = messageid;
+                }
+        
+                if (purchase_var && purchase_val) {
+                    data.var_name = purchase_var;
+                    data.var_val = purchase_val;
+                }
+        
+                if (image) {
+                    data.image = image;
+                }
+        
+                if (purchase_var && !purchase_val && returned == false) {
+                    alert("Please enter a value for Purchase Value.");
+                    return false
+                }
+        
+                if (!purchase_var && purchase_val && returned == false) {
+                    alert("Please enter a value for Purchase Var.");
+                    return false
+                }
+        
+        
+                if (ordervar && !orderval && returned == false) {
+                    alert("Please enter a value for Order Value.");
+                    return false
+                }
+        
+                if (!ordervar && orderval && returned == false) {
+                    alert("Please enter a value for Order Var.");
+                    return false
+                }
+        
+                if (adjustment_length.length > 0) {
+                    data.adjustments = [];
+                    adjustments.forEach(adjustment => {
+                        if (adjustment.name == "tax" && !(adjustment.value > 0) && (adjustment.value != "") && returned == false) {
+                            alert("Tax must be a positive number.");
+                            return false;
+                        }
+                        else if (adjustment.name == "tax" && (adjustment.value != "")) {
+                            data.adjustments.push({name: "tax", "price" : adjustment.value});
+                        }
+        
+                        if (adjustment.name == "discount" && !(adjustment.value < 0) && (adjustment.value != "") && returned == false) {
+                            alert("Discount must be a negative number.");
+                            return false;
+                        }
+                        else if (adjustment.name == "discount" && (adjustment.value != "")) {
+                            data.adjustments.push({name: "discount", "price" : adjustment.value});
+                        }
+                    }); 
+                    console.log("Adjustments", data.adjustments);
+                }
+        
+        
+                if (this.id == "incomplete_purchase") {
+                    alert(title + " has been added to your cart!");
+                }
+                else if (this.id == "return_purchase") {
+                    alert(title + " has been returned!");
+                }
+                else if (this.id == "clear_purchase") {
+                    alert("Your cart has been emptied!");
+                }
+                else {
+                    alert(title + " has been purchased!");
+                }
+        
+                const data_string = JSON.stringify(data);
+        
+                console.log("Purchase API running...", data);
+                
+                $.ajax({
+                    type: "POST",
+                    url: "/email",
+                    data: { id : id, data : data_string },
+                    success: function(data) { 
+                        console.log(data);
+                    }
+                });
+            }
         }
-    });
+    }, false);
     
-    $("#event_submit").on("click", function submit_form() {
+    document.getElementById("event_submit").addEventListener("click",
+    function submit_form() {
 
         const id = "event";
             console.log(id + ".js script initiated.");
-        const email = $("#" + id + "_email").val();
-        const event = $("#" + id + "_name").val();
-        const event_var = $("#" + id + "_var").val();
-        const event_val = $("#" + id + "_val").val();
+            document.getElementById("event_submit").value;
+        const email = document.getElementById("event_email").value;
+        const event = document.getElementById("event_name").value;
+        const event_var = document.getElementById("event_var").value;
+        const event_val = document.getElementById("event_val").value;
     
         if (email == "") {
             alert("Please enter an email address.");
@@ -549,124 +556,124 @@ get_data = ( function() {
         }
     });
 
-    $(".content_submit").on("click", function submit_form() {
-
-        const id = "content";
-            console.log(id + ".js script initiated.");
-        const url = $("#" + id + "_url").val();
-        const title = $("#" + id + "_title").val();
-        const tags = $("#" + id + "_tags").val();
-        const image = $("#" + id + "_image").val();
-        const publish_date = $("#" + id + "_date").val();
-        const expire_date = $("#" + id + "_expire").val();
-        const price = $("#" + id + "_price").val();
-        const site = $("#" + id + "_site").val();
-        const location = $("#" + id + "_location").val();
-        const author = $("#" + id + "_author").val();
-        const content_var = $("#" + id + "_var").val();
-        const content_val = $("#" + id + "_val").val();
-        const tag_name = [];
-        tag_name.push("academy-days");
-    
-        if (!url) {
-            alert("Please enter a URL.");
-            return false;
-        }
-    
-        if (this.id == "publish_submit" && !title) {
-            alert("Please enter a title.");
-            return false;
-        }
-    
-        else {
-            const data = {};
-            data.url = url;
-            data.title = title;
-    
-            if (content_var && content_val) {
-                data.var_name = content_var;
-                data.var_val = content_val;
-            }
-    
-            if (image) {
-                data.image = image;
-            }
-    
-            if (publish_date) {
-                data.publish_date = publish_date;
-            }
-    
-            if (expire_date) {
-                data.expire_date = expire_date;
-            }
-    
-            if (price) {
-                data.price = price;
-            }
-    
-            if (site) {
-                data.site = site;
-            }
-    
-            if (author) {
-                data.author = author;
-            }
-    
-            if (location) {
-                data.location = location.split(",");
-            }
-    
-            if (this.id == "publish_submit" && content_var && !content_val) {
-                alert("Please enter a value for " + content_var + ".");
+    document.addEventListener("click", function submit_form(event) {
+        if (event.target.classList.contains("content_submit")) {
+            const id = "content";
+                console.log(id + ".js script initiated.");
+            const url = document.getElementById("content_url").value;
+            const title = document.getElementById("content_title").value;
+            const tags = document.getElementById("content_tags").value;
+            const image = document.getElementById("content_image").value;
+            const publish_date =document.getElementById("content_date").value;
+            const expire_date = document.getElementById("content_expire").value;
+            const price = document.getElementById("content_price").value;
+            const site = document.getElementById("content_site").value;
+            const location = document.getElementById("content_location").value;
+            const author = document.getElementById("content_author").value;
+            const content_var = document.getElementById("content_var").value;
+            const content_val = document.getElementById("content_val").value;
+            const tag_name = [];
+            tag_name.push("academy-days");
+        
+            if (!url) {
+                alert("Please enter a URL.");
                 return false;
             }
-    
-            if (this.id == "publish_submit" && !content_var && content_val) {
-                alert("Please enter a value for " + content_val + ".");
+        
+            if (this.id == "publish_submit" && !title) {
+                alert("Please enter a title.");
                 return false;
             }
-    
-            if (this.id == "publish_submit")  {
-                alert(url + " has been published!");
-                data.content_type = "publish";
-            }
-            else if (this.id == "respider_submit") {
-                alert(url + " has been respidered!");
-                data.content_type = "respider";
-            }
-            else if (this.id == "delete_submit") {
-                alert(url + " has been deleted");
-                data.content_type = "delete";
-            }
-    
-            if (tags) {
-                data.tags = tags.split(",").concat(tag_name);
-            }
+        
             else {
-                data.tags = tag_name;
-            }
-    
-    
-            const data_string = JSON.stringify(data);
-    
-            console.log("Content API running...", data);
-            
-            $.ajax({
-                type: "POST",
-                url: "/email",
-                data: { id : id, data : data_string },
-                success: function(data) { 
-                    console.log(data);
+                const data = {};
+                data.url = url;
+                data.title = title;
+        
+                if (content_var && content_val) {
+                    data.var_name = content_var;
+                    data.var_val = content_val;
                 }
-            });
+        
+                if (image) {
+                    data.image = image;
+                }
+        
+                if (publish_date) {
+                    data.publish_date = publish_date;
+                }
+        
+                if (expire_date) {
+                    data.expire_date = expire_date;
+                }
+        
+                if (price) {
+                    data.price = price;
+                }
+        
+                if (site) {
+                    data.site = site;
+                }
+        
+                if (author) {
+                    data.author = author;
+                }
+        
+                if (location) {
+                    data.location = location.split(",");
+                }
+        
+                if (this.id == "publish_submit" && content_var && !content_val) {
+                    alert("Please enter a value for " + content_var + ".");
+                    return false;
+                }
+        
+                if (this.id == "publish_submit" && !content_var && content_val) {
+                    alert("Please enter a value for " + content_val + ".");
+                    return false;
+                }
+        
+                if (this.id == "publish_submit")  {
+                    alert(url + " has been published!");
+                    data.content_type = "publish";
+                }
+                else if (this.id == "respider_submit") {
+                    alert(url + " has been respidered!");
+                    data.content_type = "respider";
+                }
+                else if (this.id == "delete_submit") {
+                    alert(url + " has been deleted");
+                    data.content_type = "delete";
+                }
+        
+                if (tags) {
+                    data.tags = tags.split(",").concat(tag_name);
+                }
+                else {
+                    data.tags = tag_name;
+                }
+        
+                const data_string = JSON.stringify(data);
+        
+                console.log("Content API running...", data);
+                
+                $.ajax({
+                    type: "POST",
+                    url: "/email",
+                    data: { id : id, data : data_string },
+                    success: function(data) { 
+                        console.log(data);
+                    }
+                });
+            }
         }
-    });
+    }, false);
 
-    $("#cart_submit").on("click", function submit_form() {
+    document.getElementById("cart_submit").addEventListener("click", function submit_form() {
         const id = "cart";
             console.log(id + ".js script initiated.");
         const base_url = "http://links.stevedoesitall.com/join/";
-        const email = $("#" + id + "_email").val();
+        const email = document.getElementById("cart_email").value;
         const new_window = base_url + id;
     
         if (email == "") {
@@ -703,11 +710,11 @@ get_data = ( function() {
         }
     });
     
-    $("#browse_submit").on("click", function submit_form() {
+    document.getElementById("browse_submit").addEventListener("click", function submit_form() {
         const id = "browse";
             console.log(id + ".js script initiated.");
         const base_url = "http://links.stevedoesitall.com/join/";
-        const email = $("#" + id + "_email").val();
+        const email = document.getElementById("browse_email").value;
         const new_window = base_url + id;
     
         if (email == "") {
@@ -740,9 +747,9 @@ get_data = ( function() {
         }
     });
 
-    $("#recs_submit").on("click", function submit_form() {
-        $("#recs_list").empty();
-        $("#retr_recs").removeClass("recs_message");
+    document.getElementById("recs_submit").addEventListener("click", function submit_form() {
+        document.getElementById("recs_list").innerHTML = "";
+        document.getElementById("retr_recs").classList.remove("recs_message");
         const id = "recs";
         const rec_user = document.getElementById("rec_user").value;
         const algorithm = document.getElementById("rec_dropdown").value;
@@ -785,7 +792,7 @@ get_data = ( function() {
                 console.log("Retrieving " + algorithm + " recommendations...");
                 const user_recs = data.content_html;
                 const parsed_content = JSON.parse(user_recs);
-                $("#retr_recs").addClass("recs_message");
+                document.getElementById("retr_recs").classList.add("recs_message");
                 if (parsed_content[num].length < 1) {
                     $("#recs_list").append("<p>No " + algorithm + " recommendations for this user.</p>");
                 }
@@ -798,7 +805,7 @@ get_data = ( function() {
         });
     });
 
-    $("#blast_submit").on("click", function submit_form() {
+    document.getElementById("blast_submit").addEventListener("click", function submit_form() {
         const id = "blast";
         const blast_url = document.getElementById("blast_url").value;;
         const blast_author = document.getElementById("blast_author").value;;
