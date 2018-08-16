@@ -803,11 +803,12 @@ get_data = ( function() {
                     console.log('hi')
                     parsed_content[num].forEach(content => {
                         // $("#recs_list").append("<a href='" + content.url + "' target='_blank'>" + content.title + "</a><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
-
+                        const p = document.createElement("p");
                         const a = document.createElement("a");
                             a.innerHTML = content.title;
                             a.href = content.url;
                             a.target = "_blank";
+                            p.innerHTML = a;
                         const img = document.createElement("img");
                             img.src = content.image;
                             img.alt = "Image unavailable...";
