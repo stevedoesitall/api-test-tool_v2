@@ -103,8 +103,6 @@ get_data = ( function() {
             }
         }
     });
-    const retr_message = document.getElementById("retr_message");
-
 
     document.getElementById("retr_templates").classList.add("recs_message");
     document.getElementById("send_dropdown").classList.remove("dropdown");
@@ -803,15 +801,18 @@ get_data = ( function() {
                 }
                 else {
                     console.log('hi')
-                    // parsed_content[num].forEach(content => {
-                    //     $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
+                    parsed_content[num].forEach(content => {
+                        // $("#recs_list").append("<a href='" + content.url + "' target='_blank'>" + content.title + "</a><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
 
-
-                    //     const p = document.createElement("p");
-                    //     p.innerHTML = "No " + algorithm + " recommendations for this user.";
-                    //     document.getElementById("recs_list").appendChild(p);
-
-                    // });
+                        const a = document.createElement("a");
+                            a.innerHTML = content.title;
+                            a.href = content.url;
+                            a.target = "_blank";
+                        const img = document.createElement("img").classList.add("rec_image");
+                            img.src = content.image;
+                            img.alt = "Image unavailable...";
+                            img.classList.add("rec_image");
+                    });
                 }
             }
         });
