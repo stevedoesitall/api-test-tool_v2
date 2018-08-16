@@ -808,7 +808,7 @@ get_data = ( function() {
                             a.innerHTML = content.title;
                             a.href = content.url;
                             a.target = "_blank";
-                        const img = document.createElement("img").classList.add("rec_image");
+                        const img = document.createElement("img");
                             img.src = content.image;
                             img.alt = "Image unavailable...";
                             img.classList.add("rec_image");
