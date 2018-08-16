@@ -802,15 +802,16 @@ get_data = ( function() {
                     document.getElementById("recs_list").appendChild(p);
                 }
                 else {
-                    parsed_content[num].forEach(content => {
-                        $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
+                    console.log('hi')
+                    // parsed_content[num].forEach(content => {
+                    //     $("#recs_list").append("<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
 
 
-                        const p = document.createElement("p");
-                        p.innerHTML = "No " + algorithm + " recommendations for this user.";
-                        document.getElementById("recs_list").appendChild(p);
+                    //     const p = document.createElement("p");
+                    //     p.innerHTML = "No " + algorithm + " recommendations for this user.";
+                    //     document.getElementById("recs_list").appendChild(p);
 
-                    });
+                    // });
                 }
             }
         });
