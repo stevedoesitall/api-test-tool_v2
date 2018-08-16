@@ -814,7 +814,7 @@ get_data = ( function() {
                             img.alt = "Image unavailable...";
                             img.classList.add("rec_image");
 
-                        document.getElementById("recs_list").appendChild(a).appendChild(img);
+                        document.getElementById("recs_list").appendChild(p).appendChild(img);
                     });
                 }
             }
