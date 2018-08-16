@@ -340,21 +340,21 @@ get_data = ( function() {
             let returned;
             let cart_empty;
         
-            if (this.id == "incomplete_purchase" || this.id == "clear_purchase") {
+            if (event.target.id == "incomplete_purchase" || event.target.id == "clear_purchase") {
                 incomplete = 1;
             }
             else {
                 incomplete = 0;
             }
         
-            if (this.id == "clear_purchase") {
+            if (event.target.id == "clear_purchase") {
                 cart_empty = true;
             }
             else {
                 cart_empty = false;
             }
         
-            if (this.id == "return_purchase") {
+            if (event.target.id == "return_purchase") {
                 returned = true;
             }
             else {
@@ -370,22 +370,22 @@ get_data = ( function() {
                 return false;
             }
         
-            if (!url && this.id != "clear_purchase") {
+            if (!url && event.target.id != "clear_purchase") {
                 alert("Please enter a URL.");
                 return false;
             }
         
-            if (!title && this.id != "clear_purchase") {
+            if (!title && event.target.id != "clear_purchase") {
                 alert("Please enter a title.");
                 return false;
             }
         
-            if (!qty > 0 && this.id != "clear_purchase") {
+            if (!qty > 0 && event.target.id != "clear_purchase") {
                 alert("Please enter a quantity greater than 0.");
                 return false;
             }
         
-            if (!price > 0 && this.id != "clear_purchase") {
+            if (!price > 0 && event.target.id != "clear_purchase") {
                 alert("Please enter a price greater than 0.");
                 return false;
             }
@@ -470,13 +470,13 @@ get_data = ( function() {
                 }
         
         
-                if (this.id == "incomplete_purchase") {
+                if (event.target.id == "incomplete_purchase") {
                     alert(title + " has been added to your cart!");
                 }
-                else if (this.id == "return_purchase") {
+                else if (event.target.id == "return_purchase") {
                     alert(title + " has been returned!");
                 }
-                else if (this.id == "clear_purchase") {
+                else if (event.target.id == "clear_purchase") {
                     alert("Your cart has been emptied!");
                 }
                 else {
@@ -580,7 +580,7 @@ get_data = ( function() {
                 return false;
             }
         
-            if (this.id == "publish_submit" && !title) {
+            if (event.target.id == "publish_submit" && !title) {
                 alert("Please enter a title.");
                 return false;
             }
@@ -623,25 +623,25 @@ get_data = ( function() {
                     data.location = location.split(",");
                 }
         
-                if (this.id == "publish_submit" && content_var && !content_val) {
+                if (event.target.id == "publish_submit" && content_var && !content_val) {
                     alert("Please enter a value for " + content_var + ".");
                     return false;
                 }
         
-                if (this.id == "publish_submit" && !content_var && content_val) {
+                if (event.target.id == "publish_submit" && !content_var && content_val) {
                     alert("Please enter a value for " + content_val + ".");
                     return false;
                 }
         
-                if (this.id == "publish_submit")  {
+                if (event.target.id == "publish_submit")  {
                     alert(url + " has been published!");
                     data.content_type = "publish";
                 }
-                else if (this.id == "respider_submit") {
+                else if (event.target.id == "respider_submit") {
                     alert(url + " has been respidered!");
                     data.content_type = "respider";
                 }
-                else if (this.id == "delete_submit") {
+                else if (event.target.id == "delete_submit") {
                     alert(url + " has been deleted");
                     data.content_type = "delete";
                 }
