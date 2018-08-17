@@ -84,7 +84,7 @@ const get_data = ( function() {
                 get_id("user_dropdown").classList.remove("dropdown");
             })
         })
-        .catch(error => console.log(error) );
+        .catch(error => cl(error) );
     
         fetch("/server", {
             method: "post",
@@ -125,7 +125,7 @@ const get_data = ( function() {
                     }
                 })
             })
-            .catch(error => console.log(error) );
+            .catch(error => cl(error) );
     get_id("retr_templates").classList.add("recs_message");
     get_id("send_dropdown").classList.remove("dropdown");
 
@@ -257,7 +257,7 @@ const get_data = ( function() {
                     cl(resp_data);
                 })
             })
-            .catch(error => console.log(error) );
+            .catch(error => cl(error) );
         }
     });
 
@@ -348,7 +348,7 @@ const get_data = ( function() {
                         cl(resp_data);
                     })
                 })
-                .catch(error => console.log(error) );
+                .catch(error => cl(error) );
             }
         });
 
@@ -543,7 +543,7 @@ const get_data = ( function() {
                         cl(resp_data);
                     })
                 })
-                .catch(error => console.log(error) );
+                .catch(error => cl(error) );
             }
         }
     }, false);
@@ -610,7 +610,7 @@ const get_data = ( function() {
                     cl(resp_data);
                 })
             })
-            .catch(error => console.log(error) );
+            .catch(error => cl(error) );
         }
     });
 
@@ -736,7 +736,7 @@ const get_data = ( function() {
                         cl(resp_data);
                     })
                 })
-                .catch(error => console.log(error) );
+                .catch(error => cl(error) );
             }
         }
     }, false);
@@ -783,7 +783,7 @@ const get_data = ( function() {
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
                     })
                 })
-                .catch(error => console.log(error) );
+                .catch(error => cl(error) );
             
             setTimeout(function() {
                 alert(email + " has cart abandoned!");
@@ -834,7 +834,7 @@ const get_data = ( function() {
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
                     })
                 })
-                .catch(error => console.log(error) );
+                .catch(error => cl(error) );
             }
         });
 
@@ -901,23 +901,10 @@ const get_data = ( function() {
                     cl('hi')
                     parsed_content[num].forEach(content => {
                         get_id("recs_list").innerHTML += "<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>"
-                        // $("#recs_list").append("<a href='" + content.url + "' target='_blank'>" + content.title + "</a><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
-                        // const p = create_el("p");
-                        // const a = create_el("a");
-                        //     a.innerHTML = content.title;
-                        //     a.href = content.url;
-                        //     a.target = "_blank";
-                        //     p.innerHTML = a;
-                        // const img = create_el("img");
-                        //     img.src = content.image;
-                        //     img.alt = "Image unavailable...";
-                        //     img.classList.add("rec_image");
-
-                        // get_id("recs_list").appendChild(p).appendChild(img);
                     });
                 }
             })
-            .catch(error => console.log(error) );
+            .catch(error => cl(error) );
         });
     });
 
@@ -973,7 +960,7 @@ const get_data = ( function() {
                     cl(resp_data);
                 })
             })
-            .catch(error => console.log(error) );
+            .catch(error => cl(error) );
         }
     });
 });
