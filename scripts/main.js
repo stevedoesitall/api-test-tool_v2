@@ -900,7 +900,7 @@ const get_data = ( function() {
                 else {
                     cl('hi')
                     parsed_content[num].forEach(content => {
-                        get_id("recs_list").innerHTML += "<a href='" + content.url + "' target='_blank'>" + content.title + "</a><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>"
+                        get_id("recs_list").innerHTML += "<a href='" + content.url + "' target='_blank'>" + content.title + "</a><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'><br/>"
                         // $("#recs_list").append("<a href='" + content.url + "' target='_blank'>" + content.title + "</a><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
                         // const p = create_el("p");
                         // const a = create_el("a");
