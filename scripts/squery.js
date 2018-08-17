@@ -26,7 +26,22 @@ export function parse(e) {
     return JSON.parse(e);
 };
 
+<<<<<<< HEAD
 export const headers = {
     "Accept" : "application/json",
     "Content-Type": "application/json"
 };
+=======
+export function create_el(e) {
+    return document.createElement(e);
+};
+
+export const headers = {
+    "Accept" : "application/json",
+    "Content-Type": "application/json"
+};
+
+export const cookie = document.cookie;
+
+export const query_params = window.location.search;
+>>>>>>> 2d8792eb781cb830968f9b604ef7d17403785bb5

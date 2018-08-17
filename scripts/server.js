@@ -25,7 +25,7 @@ app.use(body_parser.json());
 app.listen(port, () => console.log("Academy Days Test Tool started on port " + port));
 
 //Post to the appropriate file depending on the req.body.id value
-app.post("/email", function(req, res) {
+app.post("/server", function(req, res) {
     const endpoint = req.body.id;
     const scripts_url = "./backend/";
     let data = req.body.data;
