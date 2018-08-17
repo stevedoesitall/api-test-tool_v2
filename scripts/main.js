@@ -27,7 +27,7 @@ const get_data = ( function() {
     .then(
         function(response) {
             if (response.status != 200) {
-                cl("Error: " + response.status);
+                throw new Error ("Something went wrong. Please try again later.");
                 return;
             }
             response.json().then(
@@ -83,6 +83,9 @@ const get_data = ( function() {
                 get_id("retr_lists").classList.add("recs_message");
                 get_id("user_dropdown").classList.remove("dropdown");
             })
+        })
+        .catch((err) => {
+            alert(err);
         });
     
         fetch("/server", {
@@ -93,7 +96,7 @@ const get_data = ( function() {
         .then(
             function(response) {
                 if (response.status != 200) {
-                    cl("Error: " + response.status);
+                    throw new Error ("Something went wrong. Please try again later.");
                     return;
                 }
                 response.json().then(
@@ -124,6 +127,9 @@ const get_data = ( function() {
                     }
                 })
             })
+            .catch((err) => {
+                console.log(err);
+            });
     get_id("retr_templates").classList.add("recs_message");
     get_id("send_dropdown").classList.remove("dropdown");
 
@@ -248,13 +254,16 @@ const get_data = ( function() {
         .then(
             function(response) {
             if (response.status != 200) {
-                cl("Error: " + response.status);
+                throw new Error ("Something went wrong. Please try again later.");
                 return;
             }
             response.json().then(
                 function(resp_data) {
                     cl(resp_data);
                 })
+            })
+            .catch((err) => {
+                alert(err);
             });
         }
     });
@@ -338,13 +347,16 @@ const get_data = ( function() {
             .then(
                 function(response) {
                 if (response.status != 200) {
-                    cl("Error: " + response.status);
+                    throw new Error ("Something went wrong. Please try again later.");
                     return;
                 }
                 response.json().then(
                     function(resp_data) {
                         cl(resp_data);
                     })
+                })
+                .catch((err) => {
+                    alert(err);
                 });
             }
         });
@@ -532,13 +544,16 @@ const get_data = ( function() {
                 .then(
                 function(response) {
                 if (response.status != 200) {
-                    cl("Error: " + response.status);
+                    throw new Error ("Something went wrong. Please try again later.");
                     return;
                 }
                 response.json().then(
                     function(resp_data) {
                         cl(resp_data);
                     })
+                })
+                .catch((err) => {
+                    alert(err);
                 });
             }
         }
@@ -598,13 +613,16 @@ const get_data = ( function() {
         .then(
             function(response) {
             if (response.status != 200) {
-                cl("Error: " + response.status);
+                throw new Error ("Something went wrong. Please try again later.");
                 return;
             }
             response.json().then(
                 function(resp_data) {
                     cl(resp_data);
                 })
+            })
+            .catch((err) => {
+                alert(err);
             });
         }
     });
@@ -718,13 +736,16 @@ const get_data = ( function() {
                 .then(
                 function(response) {
                 if (response.status != 200) {
-                    cl("Error: " + response.status);
+                    throw new Error ("Something went wrong. Please try again later.");
                     return;
                 }
                 response.json().then(
                     function(resp_data) {
                         cl(resp_data);
                     })
+                })
+                .catch((err) => {
+                    alert(err);
                 });
             }
         }
@@ -762,7 +783,7 @@ const get_data = ( function() {
             .then(
                 function(response) {
                 if (response.status != 200) {
-                    cl("Error: " + response.status);
+                    throw new Error ("Something went wrong. Please try again later.");
                     return;
                 }
                 response.json().then(
@@ -771,8 +792,10 @@ const get_data = ( function() {
                     const user_cookie = data.keys.cookie;
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
                     })
+                })
+                .catch((err) => {
+                    alert(err);
                 });
-            
             setTimeout(function() {
                 alert(email + " has cart abandoned!");
             }, 2000);
@@ -812,7 +835,7 @@ const get_data = ( function() {
             .then(
                 function(response) {
                 if (response.status != 200) {
-                    cl("Error: " + response.status);
+                    throw new Error ("Something went wrong. Please try again later.");
                     return;
                 }
                 response.json().then(
@@ -821,6 +844,9 @@ const get_data = ( function() {
                     const user_cookie = data.keys.cookie;
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
                     })
+                })
+                .catch((err) => {
+                    alert(err);
                 });
             }
         });
@@ -846,7 +872,7 @@ const get_data = ( function() {
         .then(
             function(response) {
             if (response.status != 200) {
-                cl("Error: " + response.status);
+                throw new Error ("Something went wrong. Please try again later.");
                 return;
             }
             response.json().then(
@@ -903,6 +929,9 @@ const get_data = ( function() {
                     });
                 }
             })
+        })
+        .catch((err) => {
+            alert(err);
         });
     });
 
@@ -950,13 +979,16 @@ const get_data = ( function() {
             .then(
             function(response) {
             if (response.status != 200) {
-                cl("Error: " + response.status);
+                throw new Error ("Something went wrong. Please try again later.");
                 return;
             }
             response.json().then(
                 function(resp_data) {
                     cl(resp_data);
                 })
+            })
+            .catch((err) => {
+                alert(err);
             });
         }
     });
