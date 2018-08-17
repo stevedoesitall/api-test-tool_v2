@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const send_templates = [];
     let all_lists = []
 
-clear_array = function() {
+function clear_array() {
     user_lists.length = 0;
     non_master_lists.length = 0;
     master_lists.length = 0;
