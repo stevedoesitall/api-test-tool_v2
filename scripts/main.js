@@ -766,8 +766,8 @@ const get_data = ( function() {
                 }
                 response.json().then(
                     function(resp_data) {
-                    cl(data);
-                    const user_cookie = data.keys.cookie;
+                    cl(resp_data);
+                    const user_cookie = resp_data.keys.cookie;
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
                     })
                 });
@@ -816,8 +816,8 @@ const get_data = ( function() {
                 }
                 response.json().then(
                     function(resp_data) {
-                    cl(data);
-                    const user_cookie = data.keys.cookie;
+                    cl(resp_data);
+                    const user_cookie = resp_data.keys.cookie;
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
                     })
                 });
