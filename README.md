@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <body>
-<h1>Academy Days Test Tool (NodeJS)</h1>
+<h1>Academy Days Test Tool</h1>
 
-<p>This tool allows Sailthru clients to mimic an API POST to the <a href="https://getstarted.sailthru.com/developers/api/user/" target="_blank">user</a>, <a href="https://getstarted.sailthru.com/developers/api/event/" target="_blank">event</a>, <a href="https://getstarted.sailthru.com/developers/api/content/" target="_blank">content</a>, and <a href="https://getstarted.sailthru.com/developers/api/purchase/" target="_blank">purchase</a> endpoints, as well as <a href="https://getstarted.sailthru.com/email/lo/automate-abandoned-cart-reminders/" target="_blank">cart</a> and <a href="https://getstarted.sailthru.com/email/lo/browse-abandon/" target="_blank">browse</a> abandon entries.</p>
+<p><b>Stack:</b> Vanilla JS, Node.js, Express.js</p>
+
+<p><b>Description:</b> This tool allows Sailthru clients to mimic an API POST to the <a href="https://getstarted.sailthru.com/developers/api/user/" target="_blank">user</a>, <a href="https://getstarted.sailthru.com/developers/api/event/" target="_blank">event</a>, <a href="https://getstarted.sailthru.com/developers/api/content/" target="_blank">content</a>, and <a href="https://getstarted.sailthru.com/developers/api/purchase/" target="_blank">purchase</a> endpoints, as well as <a href="https://getstarted.sailthru.com/email/lo/automate-abandoned-cart-reminders/" target="_blank">cart</a> and <a href="https://getstarted.sailthru.com/email/lo/browse-abandon/" target="_blank">browse</a> abandon entries.</p>
 
 <h2>User API</h2>
 <p>Enter your email address plus one of the pre-set Master Lists to trigger a Lifecycle Optimizer "List Joined" flow. You can optionally set a single user variable as well.</p>
