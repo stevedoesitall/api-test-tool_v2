@@ -17,7 +17,7 @@ function clear_array() {
     all_lists.length = 0;
 }
 
-get_data = ( function() {
+const get_data = ( function() {
     clear_array();
     fetch("/server", {
         method: "post",
