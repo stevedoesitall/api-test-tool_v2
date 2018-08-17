@@ -131,7 +131,6 @@ const get_data = ( function() {
 
 } () );
 
-
     const content_blocks = qsa(".content_block");
 
     content_blocks.forEach(content => {
@@ -901,19 +900,6 @@ const get_data = ( function() {
                     cl('hi')
                     parsed_content[num].forEach(content => {
                         get_id("recs_list").innerHTML += "<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>"
-                        // $("#recs_list").append("<a href='" + content.url + "' target='_blank'>" + content.title + "</a><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
-                        // const p = create_el("p");
-                        // const a = create_el("a");
-                        //     a.innerHTML = content.title;
-                        //     a.href = content.url;
-                        //     a.target = "_blank";
-                        //     p.innerHTML = a;
-                        // const img = create_el("img");
-                        //     img.src = content.image;
-                        //     img.alt = "Image unavailable...";
-                        //     img.classList.add("rec_image");
-
-                        // get_id("recs_list").appendChild(p).appendChild(img);
                     });
                 }
             })

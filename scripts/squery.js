@@ -28,7 +28,7 @@ export function parse(e) {
 
 export function create_el(e) {
     return document.createElement(e);
-}
+};
 
 export const headers = {
     "Accept" : "application/json",
