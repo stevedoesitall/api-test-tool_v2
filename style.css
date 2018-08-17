@@ -60,6 +60,11 @@ a:hover {
     margin-top: 2.5em;
 }
 
+#recs_list {
+    display: block;
+}
+
+
 .button_link {
     text-decoration: none;
 }
