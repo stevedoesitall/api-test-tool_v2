@@ -1,3 +1,5 @@
+import {get_id, get_class, qs, string, cl, headers} from "./squery.js";
+
 document.addEventListener("DOMContentLoaded", function() {
     const user_lists = [];
     const non_master_lists = [];
@@ -17,7 +19,7 @@ clear_array = function() {
 
 get_data = ( function() {
     // clear_array();
-    fetch("/email", {
+    fetch("/server", {
         method: "post",
         headers: headers,
         body: string({id : "lists", data : "{}"})
@@ -85,7 +87,7 @@ get_data = ( function() {
     
     $.ajax({
         type: "POST",
-        url: "/email",
+        url: "/server",
         data: { id : "templates", data : "{}" },
         success: function(data) {
             const label = "testers";
@@ -231,7 +233,7 @@ get_data = ( function() {
     
         $.ajax({
             type: "POST",
-            url: "/email",
+            url: "/server",
             data: { id : id, data : data_string },
             success: function(data) { 
                 console.log(data);
@@ -313,7 +315,7 @@ get_data = ( function() {
             
             $.ajax({
                 type: "POST",
-                url: "/email",
+                url: "/server",
                 data: { id : id, data : data_string },
                 success: function(data) { 
                     console.log(data);
@@ -499,7 +501,7 @@ get_data = ( function() {
                 
                 $.ajax({
                     type: "POST",
-                    url: "/email",
+                    url: "/server",
                     data: { id : id, data : data_string },
                     success: function(data) { 
                         console.log(data);
@@ -557,7 +559,7 @@ get_data = ( function() {
     
         $.ajax({
             type: "POST",
-            url: "/email",
+            url: "/server",
             data: { id : id, data : data_string },
             success: function(data) { 
                 console.log(data);
@@ -669,7 +671,7 @@ get_data = ( function() {
                 
                 $.ajax({
                     type: "POST",
-                    url: "/email",
+                    url: "/server",
                     data: { id : id, data : data_string },
                     success: function(data) { 
                         console.log(data);
@@ -705,7 +707,7 @@ get_data = ( function() {
             
             $.ajax({
                 type: "POST",
-                url: "/email",
+                url: "/server",
                 data: { id : id, data : data_string },
                 success: function(data) { 
                     console.log(data);
@@ -747,7 +749,7 @@ get_data = ( function() {
             
             $.ajax({
                 type: "POST",
-                url: "/email",
+                url: "/server",
                 data: { id : id, data : data_string },
                 success: function(data) { 
                     const user_cookie = data.keys.cookie;
@@ -772,7 +774,7 @@ get_data = ( function() {
                 
         $.ajax({
             type: "POST",
-            url: "/email",
+            url: "/server",
             data: { id : id, data : data_string },
             success: function(data) {
                 let num;
@@ -868,7 +870,7 @@ get_data = ( function() {
             
             $.ajax({
                 type: "POST",
-                url: "/email",
+                url: "/server",
                 data: { id : id, data : data_string },
                 success: function(data) { 
                     console.log(data);
