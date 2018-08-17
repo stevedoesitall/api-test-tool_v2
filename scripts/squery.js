@@ -26,6 +26,10 @@ export function parse(e) {
     return JSON.parse(e);
 };
 
+export function create_el(e) {
+    return document.createElement(e);
+}
+
 export const headers = {
     "Accept" : "application/json",
     "Content-Type": "application/json"

@@ -96,7 +96,6 @@ const data_post = (data) => {
             }
         );
     }
-
 }
 
 module.exports = {

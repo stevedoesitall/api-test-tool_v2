@@ -1,4 +1,4 @@
-import {get_id, get_class, qsa, parse, string, cl, headers} from "./squery.js";
+import {get_id, get_class, qsa, parse, string, cl, headers, create_el} from "./squery.js";
 
 document.addEventListener("DOMContentLoaded", function() {
     const user_lists = [];
@@ -74,7 +74,7 @@ const get_data = ( function() {
                 cl(all_lists);
                 if (!lists_list.length > 0) {
                     all_lists.forEach(list => {
-                        const option = document.createElement("option");
+                        const option = create_el("option");
                         option.innerHTML = list;
                         get_id("user_lists").appendChild(option);
                     });
@@ -83,7 +83,8 @@ const get_data = ( function() {
                 get_id("retr_lists").classList.add("recs_message");
                 get_id("user_dropdown").classList.remove("dropdown");
             })
-        });
+        })
+        .catch(error => console.log(error) );
     
         fetch("/server", {
             method: "post",
@@ -117,13 +118,14 @@ const get_data = ( function() {
                     const template_list =  get_id("send_templates");
                     if (!template_list.length > 0) {
                         send_templates.forEach(template => {
-                            const option = document.createElement("option");
+                            const option = create_el("option");
                             option.innerHTML = template.name;
                             get_id("send_templates").appendChild(option);
                         });
                     }
                 })
             })
+            .catch(error => console.log(error) );
     get_id("retr_templates").classList.add("recs_message");
     get_id("send_dropdown").classList.remove("dropdown");
 
@@ -254,7 +256,8 @@ const get_data = ( function() {
                 function(resp_data) {
                     cl(resp_data);
                 })
-            });
+            })
+            .catch(error => console.log(error) );
         }
     });
 
@@ -344,7 +347,8 @@ const get_data = ( function() {
                     function(resp_data) {
                         cl(resp_data);
                     })
-                });
+                })
+                .catch(error => console.log(error) );
             }
         });
 
@@ -538,7 +542,8 @@ const get_data = ( function() {
                     function(resp_data) {
                         cl(resp_data);
                     })
-                });
+                })
+                .catch(error => console.log(error) );
             }
         }
     }, false);
@@ -604,7 +609,8 @@ const get_data = ( function() {
                 function(resp_data) {
                     cl(resp_data);
                 })
-            });
+            })
+            .catch(error => console.log(error) );
         }
     });
 
@@ -729,7 +735,8 @@ const get_data = ( function() {
                     function(resp_data) {
                         cl(resp_data);
                     })
-                });
+                })
+                .catch(error => console.log(error) );
             }
         }
     }, false);
@@ -775,7 +782,8 @@ const get_data = ( function() {
                     const user_cookie = resp_data.keys.cookie;
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
                     })
-                });
+                })
+                .catch(error => console.log(error) );
             
             setTimeout(function() {
                 alert(email + " has cart abandoned!");
@@ -825,7 +833,8 @@ const get_data = ( function() {
                     const user_cookie = resp_data.keys.cookie;
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
                     })
-                });
+                })
+                .catch(error => console.log(error) );
             }
         });
 
@@ -884,29 +893,31 @@ const get_data = ( function() {
                 const parsed_content = parse(user_recs);
                 get_id("retr_recs").classList.add("recs_message");
                 if (parsed_content[num].length < 1) {
-                    const p = document.createElement("p");
+                    const p = create_el("p");
                     p.innerHTML = "No " + algorithm + " recommendations for this user.";
                     get_id("recs_list").appendChild(p);
                 }
                 else {
                     cl('hi')
                     parsed_content[num].forEach(content => {
+                        get_id("recs_list").innerHTML += "<a href='" + content.url + "' target='_blank'>" + content.title + "</a><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>"
                         // $("#recs_list").append("<a href='" + content.url + "' target='_blank'>" + content.title + "</a><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
-                        const p = document.createElement("p");
-                        const a = document.createElement("a");
-                            a.innerHTML = content.title;
-                            a.href = content.url;
-                            a.target = "_blank";
-                            p.innerHTML = a;
-                        const img = document.createElement("img");
-                            img.src = content.image;
-                            img.alt = "Image unavailable...";
-                            img.classList.add("rec_image");
+                        // const p = create_el("p");
+                        // const a = create_el("a");
+                        //     a.innerHTML = content.title;
+                        //     a.href = content.url;
+                        //     a.target = "_blank";
+                        //     p.innerHTML = a;
+                        // const img = create_el("img");
+                        //     img.src = content.image;
+                        //     img.alt = "Image unavailable...";
+                        //     img.classList.add("rec_image");
 
-                        get_id("recs_list").appendChild(p).appendChild(img);
+                        // get_id("recs_list").appendChild(p).appendChild(img);
                     });
                 }
             })
+            .catch(error => console.log(error) );
         });
     });
 
@@ -961,7 +972,8 @@ const get_data = ( function() {
                 function(resp_data) {
                     cl(resp_data);
                 })
-            });
+            })
+            .catch(error => console.log(error) );
         }
     });
 });
