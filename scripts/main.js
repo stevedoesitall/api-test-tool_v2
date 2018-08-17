@@ -1,4 +1,4 @@
-import {get_id, get_class, qs, string, cl, headers} from "./squery.js";
+import {get_id, get_class, qsa, parse, string, cl, headers} from "./squery.js";
 
 document.addEventListener("DOMContentLoaded", function() {
     const user_lists = [];
@@ -70,58 +70,67 @@ const get_data = ( function() {
 
                 all_lists = non_master_lists.concat(master_lists_sorted);
 
-                const lists_list = document.getElementById("user_lists");
-                console.log(all_lists);
+                const lists_list = get_id("user_lists");
+                cl(all_lists);
                 if (!lists_list.length > 0) {
                     all_lists.forEach(list => {
                         const option = document.createElement("option");
                         option.innerHTML = list;
-                        document.getElementById("user_lists").appendChild(option);
+                        get_id("user_lists").appendChild(option);
                     });
                 }
 
-                document.getElementById("retr_lists").classList.add("recs_message");
-                document.getElementById("user_dropdown").classList.remove("dropdown");
+                get_id("retr_lists").classList.add("recs_message");
+                get_id("user_dropdown").classList.remove("dropdown");
             })
         });
     
-    $.ajax({
-        type: "POST",
-        url: "/server",
-        data: { id : "templates", data : "{}" },
-        success: function(data) {
-            const label = "testers";
-            const all_templates = data.templates;
-            all_templates.forEach(template => {
-                if (template.labels && template.labels.includes(label)) {
-                    send_templates.push({"name": template.name});
+        fetch("/server", {
+            method: "post",
+            headers: headers,
+            body: string({id : "templates", data : "{}"})
+        })
+        .then(
+            function(response) {
+                if (response.status != 200) {
+                    cl("Error: " + response.status);
+                    return;
                 }
-            });
-
-            send_templates.sort(function(a, b) {
-                const text_a = a.name.toUpperCase();
-                const text_b = b.name.toUpperCase();
-                return (text_a < text_b) ? -1 : (text_a > text_b) ? 1 : 0;
-            });
-            console.log(send_templates);
-            const template_list =  document.getElementById("send_templates");
-            if (!template_list.length > 0) {
-                send_templates.forEach(template => {
-                    const option = document.createElement("option");
-                    option.innerHTML = template.name;
-                    document.getElementById("send_templates").appendChild(option);
-                });
-            }
-        }
-    });
-
-    document.getElementById("retr_templates").classList.add("recs_message");
-    document.getElementById("send_dropdown").classList.remove("dropdown");
+                response.json().then(
+                    function(resp_data) {
+                    const label = "testers";
+                    const all_templates = resp_data.templates;
+                    all_templates.forEach(template => {
+                        if (template.labels && template.labels.includes(label)) {
+                            send_templates.push({"name": template.name});
+                        }
+                    });
+    
+                    send_templates.sort(function(a, b) {
+                        const text_a = a.name.toUpperCase();
+                        const text_b = b.name.toUpperCase();
+                        return (text_a < text_b) ? -1 : (text_a > text_b) ? 1 : 0;
+                    });
+    
+                    cl(send_templates);
+    
+                    const template_list =  get_id("send_templates");
+                    if (!template_list.length > 0) {
+                        send_templates.forEach(template => {
+                            const option = document.createElement("option");
+                            option.innerHTML = template.name;
+                            get_id("send_templates").appendChild(option);
+                        });
+                    }
+                })
+            })
+    get_id("retr_templates").classList.add("recs_message");
+    get_id("send_dropdown").classList.remove("dropdown");
 
 } () );
 
 
-    const content_blocks = document.querySelectorAll(".content_block");
+    const content_blocks = qsa(".content_block");
 
     content_blocks.forEach(content => {
         content.style.display = "none";
@@ -129,9 +138,9 @@ const get_data = ( function() {
 
     document.addEventListener("click", function get_content(event) {
         if (event.target.classList.contains("select_button")) {
-            console.log(event.target.id);
+            cl(event.target.id);
             const button = event.target;
-            document.getElementById("recs_list").innerHTML = "";
+            get_id("recs_list").innerHTML = "";
             content_blocks.forEach(content => {
                 if (content.id == button.id + "_post") {
                     content.style.display = "";
@@ -143,18 +152,18 @@ const get_data = ( function() {
         }
     }, false);
 
-    document.getElementById("send_submit").addEventListener("click", function submit_form() {
+    get_id("send_submit").addEventListener("click", function submit_form() {
         const id = "send";
-            console.log(id + ".js script initiated.");
-            document.getElementById().value;
-        let email = document.getElementById("send_email").value;
-        const template = document.getElementById("send_templates").value;
-        const send_var = document.getElementById("send_var").value;
-        const send_val = document.getElementById("send_val").value;
-        const send_cc = document.getElementById("send_cc").value;
-        const send_bcc = document.getElementById("send_bcc").value;
-        const send_replyto = document.getElementById("send_replyto").value;
-        const send_behalfof = document.getElementById("send_behalfof").value;
+            cl(id + ".js script initiated.");
+            get_id().value;
+        let email = get_id("send_email").value;
+        const template = get_id("send_templates").value;
+        const send_var = get_id("send_var").value;
+        const send_val = get_id("send_val").value;
+        const send_cc = get_id("send_cc").value;
+        const send_bcc = get_id("send_bcc").value;
+        const send_replyto = get_id("send_replyto").value;
+        const send_behalfof = get_id("send_behalfof").value;
     
         if (email == "s") {
             email = "steve@sailthru.com";
@@ -225,35 +234,35 @@ const get_data = ( function() {
                 data.behalfof_val = send_behalfof;
             }
     
-        const data_string = JSON.stringify(data);
+        const data_string = string(data);
     
         alert(email + " has been sent " + template);
     
-        console.log("Send API running...", data);
+        cl("Send API running...", data);
     
         $.ajax({
             type: "POST",
             url: "/server",
             data: { id : id, data : data_string },
             success: function(data) { 
-                console.log(data);
+                cl(data);
             }
             });
         }
     });
 
-    document.getElementById("user_submit").addEventListener("click", function submit_form() {
+    get_id("user_submit").addEventListener("click", function submit_form() {
         
         const id = "user";
-            console.log(id + ".js script initiated.");
-        const email = document.getElementById("user_email").value;
-        const list = document.getElementById("user_lists").value;
-        const user_var = document.getElementById("user_var").value;
-        const user_val = document.getElementById("user_val").value;
-        const user_status = document.getElementById("user_status").value;
+            cl(id + ".js script initiated.");
+        const email = get_id("user_email").value;
+        const list = get_id("user_lists").value;
+        const user_var = get_id("user_var").value;
+        const user_val = get_id("user_val").value;
+        const user_status = get_id("user_status").value;
     
-        const keys_length = document.getElementsByClassName("user_keys");
-        const keys = document.querySelectorAll(".user_keys");
+        const keys_length = get_class("user_keys");
+        const keys = qsa(".user_keys");
     
         let locale = window.navigator.language;
             locale = locale.replace("-","_");
@@ -309,16 +318,16 @@ const get_data = ( function() {
                 }); 
             }
     
-            const data_string = JSON.stringify(data);
+            const data_string = string(data);
             
-            console.log("User API running...", data);
+            cl("User API running...", data);
             
             $.ajax({
                 type: "POST",
                 url: "/server",
                 data: { id : id, data : data_string },
                 success: function(data) { 
-                    console.log(data);
+                    cl(data);
                 }
             });
         }
@@ -327,23 +336,23 @@ const get_data = ( function() {
     document.addEventListener("click", function submit_form(event) {
         if (event.target.classList.contains("purchase_submit")) {
             const id = "purchase";
-                console.log(id + ".js script initiated.");
-            const email = document.getElementById("purchase_email").value;
-            const url = document.getElementById("purchase_url").value;
-            const title = document.getElementById("purchase_title").value;
-            const tags = document.getElementById("purchase_tags").value;
-            const image = document.getElementById("purchase_image").value;
-            const qty = document.getElementById("purchase_qty").value;
-            const price = document.getElementById("purchase_price").value;
-            const purchase_var = document.getElementById("purchase_var").value;
-            const purchase_val = document.getElementById("purchase_val").value;
-            const messageid = document.getElementById("purchase_messageid").value;
-            const ordervar = document.getElementById("purchase_ordervar").value;
-            const orderval = document.getElementById("purchase_orderval").value;
+                cl(id + ".js script initiated.");
+            const email = get_id("purchase_email").value;
+            const url = get_id("purchase_url").value;
+            const title = get_id("purchase_title").value;
+            const tags = get_id("purchase_tags").value;
+            const image = get_id("purchase_image").value;
+            const qty = get_id("purchase_qty").value;
+            const price = get_id("purchase_price").value;
+            const purchase_var = get_id("purchase_var").value;
+            const purchase_val = get_id("purchase_val").value;
+            const messageid = get_id("purchase_messageid").value;
+            const ordervar = get_id("purchase_ordervar").value;
+            const orderval = get_id("purchase_orderval").value;
         
-            const adjustment_length = document.getElementsByClassName("purchase_adjustments");
-            const adjustments = document.querySelectorAll(".purchase_adjustments");
-            console.log("Adjustments length", adjustment_length);
+            const adjustment_length = get_class("purchase_adjustments");
+            const adjustments = qsa(".purchase_adjustments");
+            cl("Adjustments length", adjustment_length);
         
             const tag_name = [];
             tag_name.push("academy-days");
@@ -478,7 +487,7 @@ const get_data = ( function() {
                             data.adjustments.push({name: "discount", "price" : adjustment.value});
                         }
                     }); 
-                    console.log("Adjustments", data.adjustments);
+                    cl("Adjustments", data.adjustments);
                 }
         
         
@@ -495,32 +504,32 @@ const get_data = ( function() {
                     alert(title + " has been purchased!");
                 }
         
-                const data_string = JSON.stringify(data);
+                const data_string = string(data);
         
-                console.log("Purchase API running...", data);
+                cl("Purchase API running...", data);
                 
                 $.ajax({
                     type: "POST",
                     url: "/server",
                     data: { id : id, data : data_string },
                     success: function(data) { 
-                        console.log(data);
+                        cl(data);
                     }
                 });
             }
         }
     }, false);
     
-    document.getElementById("event_submit").addEventListener("click",
+    get_id("event_submit").addEventListener("click",
     function submit_form() {
 
         const id = "event";
-            console.log(id + ".js script initiated.");
-            document.getElementById("event_submit").value;
-        const email = document.getElementById("event_email").value;
-        const event = document.getElementById("event_name").value;
-        const event_var = document.getElementById("event_var").value;
-        const event_val = document.getElementById("event_val").value;
+            cl(id + ".js script initiated.");
+            get_id("event_submit").value;
+        const email = get_id("event_email").value;
+        const event = get_id("event_name").value;
+        const event_var = get_id("event_var").value;
+        const event_val = get_id("event_val").value;
     
         if (email == "") {
             alert("Please enter an email address.");
@@ -551,18 +560,18 @@ const get_data = ( function() {
                 alert("Please enter a value for " + event_val + ".");
                 return false;
             }
-        const data_string = JSON.stringify(data);
+        const data_string = string(data);
     
         alert(email + " has been triggered event: " + event);
     
-        console.log("Event API running...", data);
+        cl("Event API running...", data);
     
         $.ajax({
             type: "POST",
             url: "/server",
             data: { id : id, data : data_string },
             success: function(data) { 
-                console.log(data);
+                cl(data);
             }
             });
         }
@@ -571,19 +580,19 @@ const get_data = ( function() {
     document.addEventListener("click", function submit_form(event) {
         if (event.target.classList.contains("content_submit")) {
             const id = "content";
-                console.log(id + ".js script initiated.");
-            const url = document.getElementById("content_url").value;
-            const title = document.getElementById("content_title").value;
-            const tags = document.getElementById("content_tags").value;
-            const image = document.getElementById("content_image").value;
-            const publish_date =document.getElementById("content_date").value;
-            const expire_date = document.getElementById("content_expire").value;
-            const price = document.getElementById("content_price").value;
-            const site = document.getElementById("content_site").value;
-            const location = document.getElementById("content_location").value;
-            const author = document.getElementById("content_author").value;
-            const content_var = document.getElementById("content_var").value;
-            const content_val = document.getElementById("content_val").value;
+                cl(id + ".js script initiated.");
+            const url = get_id("content_url").value;
+            const title = get_id("content_title").value;
+            const tags = get_id("content_tags").value;
+            const image = get_id("content_image").value;
+            const publish_date =get_id("content_date").value;
+            const expire_date = get_id("content_expire").value;
+            const price = get_id("content_price").value;
+            const site = get_id("content_site").value;
+            const location = get_id("content_location").value;
+            const author = get_id("content_author").value;
+            const content_var = get_id("content_var").value;
+            const content_val = get_id("content_val").value;
             const tag_name = [];
             tag_name.push("academy-days");
         
@@ -665,27 +674,27 @@ const get_data = ( function() {
                     data.tags = tag_name;
                 }
         
-                const data_string = JSON.stringify(data);
+                const data_string = string(data);
         
-                console.log("Content API running...", data);
+                cl("Content API running...", data);
                 
                 $.ajax({
                     type: "POST",
                     url: "/server",
                     data: { id : id, data : data_string },
                     success: function(data) { 
-                        console.log(data);
+                        cl(data);
                     }
                 });
             }
         }
     }, false);
 
-    document.getElementById("cart_submit").addEventListener("click", function submit_form() {
+    get_id("cart_submit").addEventListener("click", function submit_form() {
         const id = "cart";
-            console.log(id + ".js script initiated.");
+            cl(id + ".js script initiated.");
         const base_url = "http://links.stevedoesitall.com/join/";
-        const email = document.getElementById("cart_email").value;
+        const email = get_id("cart_email").value;
         const new_window = base_url + id;
     
         if (email == "") {
@@ -701,16 +710,16 @@ const get_data = ( function() {
             const data = {};
             data.email = email;
     
-            const data_string = JSON.stringify(data);
+            const data_string = string(data);
             
-            console.log("Cart Abandon running...", data);
+            cl("Cart Abandon running...", data);
             
             $.ajax({
                 type: "POST",
                 url: "/server",
                 data: { id : id, data : data_string },
                 success: function(data) { 
-                    console.log(data);
+                    cl(data);
                     const user_cookie = data.keys.cookie;
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
                 }
@@ -722,11 +731,11 @@ const get_data = ( function() {
         }
     });
     
-    document.getElementById("browse_submit").addEventListener("click", function submit_form() {
+    get_id("browse_submit").addEventListener("click", function submit_form() {
         const id = "browse";
-            console.log(id + ".js script initiated.");
+            cl(id + ".js script initiated.");
         const base_url = "http://links.stevedoesitall.com/join/";
-        const email = document.getElementById("browse_email").value;
+        const email = get_id("browse_email").value;
         const new_window = base_url + id;
     
         if (email == "") {
@@ -743,9 +752,9 @@ const get_data = ( function() {
             const data = {};
             data.email = email;
     
-            const data_string = JSON.stringify(data);
+            const data_string = string(data);
             
-            console.log("Browse Abandon running...", data);
+            cl("Browse Abandon running...", data);
             
             $.ajax({
                 type: "POST",
@@ -759,18 +768,18 @@ const get_data = ( function() {
         }
     });
 
-    document.getElementById("recs_submit").addEventListener("click", function submit_form() {
-        document.getElementById("recs_list").innerHTML = "";
-        document.getElementById("retr_recs").classList.remove("recs_message");
+    get_id("recs_submit").addEventListener("click", function submit_form() {
+        get_id("recs_list").innerHTML = "";
+        get_id("retr_recs").classList.remove("recs_message");
         const id = "recs";
-        const rec_user = document.getElementById("rec_user").value;
-        const algorithm = document.getElementById("rec_dropdown").value;
+        const rec_user = get_id("rec_user").value;
+        const algorithm = get_id("rec_dropdown").value;
     
         const data = {};
             data.email = rec_user + "@sailthru.com";
             data.algorithm = algorithm;
 
-        const data_string = JSON.stringify(data);
+        const data_string = string(data);
                 
         $.ajax({
             type: "POST",
@@ -801,17 +810,17 @@ const get_data = ( function() {
                         num = 6;
                         break;
                 }
-                console.log("Retrieving " + algorithm + " recommendations...");
+                cl("Retrieving " + algorithm + " recommendations...");
                 const user_recs = data.content_html;
-                const parsed_content = JSON.parse(user_recs);
-                document.getElementById("retr_recs").classList.add("recs_message");
+                const parsed_content = parse(user_recs);
+                get_id("retr_recs").classList.add("recs_message");
                 if (parsed_content[num].length < 1) {
                     const p = document.createElement("p");
                     p.innerHTML = "No " + algorithm + " recommendations for this user.";
-                    document.getElementById("recs_list").appendChild(p);
+                    get_id("recs_list").appendChild(p);
                 }
                 else {
-                    console.log('hi')
+                    cl('hi')
                     parsed_content[num].forEach(content => {
                         // $("#recs_list").append("<a href='" + content.url + "' target='_blank'>" + content.title + "</a><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>");
                         const p = document.createElement("p");
@@ -825,19 +834,19 @@ const get_data = ( function() {
                             img.alt = "Image unavailable...";
                             img.classList.add("rec_image");
 
-                        document.getElementById("recs_list").appendChild(p).appendChild(img);
+                        get_id("recs_list").appendChild(p).appendChild(img);
                     });
                 }
             }
         });
     });
 
-    document.getElementById("blast_submit").addEventListener("click", function submit_form() {
+    get_id("blast_submit").addEventListener("click", function submit_form() {
         const id = "blast";
-        const blast_url = document.getElementById("blast_url").value;;
-        const blast_author = document.getElementById("blast_author").value;;
-        const blast_title = document.getElementById("blast_title").value;;
-        const blast_desc = document.getElementById("blast_desc").value;;
+        const blast_url = get_id("blast_url").value;;
+        const blast_author = get_id("blast_author").value;;
+        const blast_title = get_id("blast_title").value;;
+        const blast_desc = get_id("blast_desc").value;;
     
         if (blast_url == "") {
             alert("Please enter a URL.");
@@ -864,16 +873,16 @@ const get_data = ( function() {
                 data.title = blast_title;
                 data.description = blast_desc;
     
-            const data_string = JSON.stringify(data);
+            const data_string = string(data);
             
-            console.log("Blast API running...", data);
+            cl("Blast API running...", data);
             
             $.ajax({
                 type: "POST",
                 url: "/server",
                 data: { id : id, data : data_string },
                 success: function(data) { 
-                    console.log(data);
+                    cl(data);
                 }
             });
         }
