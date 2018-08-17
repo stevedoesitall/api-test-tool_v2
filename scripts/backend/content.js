@@ -39,6 +39,10 @@ const data_post = (data) => {
             api_params.price = data_parse.price;
         }
 
+        if (data_parse.inventory) {
+            api_params.inventory = data_parse.inventory;
+        }
+
         if (data_parse.site) {
             api_params.site_name = data_parse.site;
         }

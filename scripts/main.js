@@ -619,6 +619,7 @@ const get_data = ( function() {
             const publish_date =get_id("content_date").value;
             const expire_date = get_id("content_expire").value;
             const price = get_id("content_price").value;
+            const inventory = get_id("content_inventory").value;
             const site = get_id("content_site").value;
             const location = get_id("content_location").value;
             const author = get_id("content_author").value;
@@ -661,6 +662,10 @@ const get_data = ( function() {
         
                 if (price) {
                     data.price = price;
+                }
+
+                if (inventory) {
+                    data.inventory = inventory;
                 }
         
                 if (site) {
