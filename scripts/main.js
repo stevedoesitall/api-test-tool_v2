@@ -240,13 +240,21 @@ const get_data = ( function() {
     
         cl("Send API running...", data);
     
-        $.ajax({
-            type: "POST",
-            url: "/server",
-            data: { id : id, data : data_string },
-            success: function(data) { 
-                cl(data);
+        fetch("/server", {
+            method: "post",
+            headers: headers,
+            body: string({id : id, data : data_string})
+        })
+        .then(
+            function(response) {
+            if (response.status != 200) {
+                cl("Error: " + response.status);
+                return;
             }
+            response.json().then(
+                function(resp_data) {
+                    cl(resp_data);
+                })
             });
         }
     });
@@ -322,16 +330,24 @@ const get_data = ( function() {
             
             cl("User API running...", data);
             
-            $.ajax({
-                type: "POST",
-                url: "/server",
-                data: { id : id, data : data_string },
-                success: function(data) { 
-                    cl(data);
+            fetch("/server", {
+                method: "post",
+                headers: headers,
+                body: string({id : id, data : data_string})
+            })
+            .then(
+                function(response) {
+                if (response.status != 200) {
+                    cl("Error: " + response.status);
+                    return;
                 }
-            });
-        }
-    });
+                response.json().then(
+                    function(resp_data) {
+                        cl(resp_data);
+                    })
+                });
+            }
+        });
 
     document.addEventListener("click", function submit_form(event) {
         if (event.target.classList.contains("purchase_submit")) {
@@ -508,13 +524,21 @@ const get_data = ( function() {
         
                 cl("Purchase API running...", data);
                 
-                $.ajax({
-                    type: "POST",
-                    url: "/server",
-                    data: { id : id, data : data_string },
-                    success: function(data) { 
-                        cl(data);
-                    }
+                fetch("/server", {
+                    method: "post",
+                    headers: headers,
+                    body: string({id : id, data : data_string})
+                })
+                .then(
+                function(response) {
+                if (response.status != 200) {
+                    cl("Error: " + response.status);
+                    return;
+                }
+                response.json().then(
+                    function(resp_data) {
+                        cl(resp_data);
+                    })
                 });
             }
         }
@@ -566,13 +590,21 @@ const get_data = ( function() {
     
         cl("Event API running...", data);
     
-        $.ajax({
-            type: "POST",
-            url: "/server",
-            data: { id : id, data : data_string },
-            success: function(data) { 
-                cl(data);
+        fetch("/server", {
+            method: "post",
+            headers: headers,
+            body: string({id : id, data : data_string})
+        })
+        .then(
+            function(response) {
+            if (response.status != 200) {
+                cl("Error: " + response.status);
+                return;
             }
+            response.json().then(
+                function(resp_data) {
+                    cl(resp_data);
+                })
             });
         }
     });
@@ -678,13 +710,21 @@ const get_data = ( function() {
         
                 cl("Content API running...", data);
                 
-                $.ajax({
-                    type: "POST",
-                    url: "/server",
-                    data: { id : id, data : data_string },
-                    success: function(data) { 
-                        cl(data);
-                    }
+                fetch("/server", {
+                    method: "post",
+                    headers: headers,
+                    body: string({id : id, data : data_string})
+                })
+                .then(
+                function(response) {
+                if (response.status != 200) {
+                    cl("Error: " + response.status);
+                    return;
+                }
+                response.json().then(
+                    function(resp_data) {
+                        cl(resp_data);
+                    })
                 });
             }
         }
@@ -714,16 +754,24 @@ const get_data = ( function() {
             
             cl("Cart Abandon running...", data);
             
-            $.ajax({
-                type: "POST",
-                url: "/server",
-                data: { id : id, data : data_string },
-                success: function(data) { 
+            fetch("/server", {
+                method: "post",
+                headers: headers,
+                body: string({id : id, data : data_string})
+            })
+            .then(
+                function(response) {
+                if (response.status != 200) {
+                    cl("Error: " + response.status);
+                    return;
+                }
+                response.json().then(
+                    function(resp_data) {
                     cl(data);
                     const user_cookie = data.keys.cookie;
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
-                }
-            });
+                    })
+                });
             
             setTimeout(function() {
                 alert(email + " has cart abandoned!");
@@ -756,17 +804,26 @@ const get_data = ( function() {
             
             cl("Browse Abandon running...", data);
             
-            $.ajax({
-                type: "POST",
-                url: "/server",
-                data: { id : id, data : data_string },
-                success: function(data) { 
+            fetch("/server", {
+                method: "post",
+                headers: headers,
+                body: string({id : id, data : data_string})
+            })
+            .then(
+                function(response) {
+                if (response.status != 200) {
+                    cl("Error: " + response.status);
+                    return;
+                }
+                response.json().then(
+                    function(resp_data) {
+                    cl(data);
                     const user_cookie = data.keys.cookie;
                     window.open(new_window + "?cookie=" + user_cookie, "_blank");
-                }
-            });
-        }
-    });
+                    })
+                });
+            }
+        });
 
     get_id("recs_submit").addEventListener("click", function submit_form() {
         get_id("recs_list").innerHTML = "";
@@ -781,11 +838,19 @@ const get_data = ( function() {
 
         const data_string = string(data);
                 
-        $.ajax({
-            type: "POST",
-            url: "/server",
-            data: { id : id, data : data_string },
-            success: function(data) {
+        fetch("/server", {
+            method: "post",
+            headers: headers,
+            body: string({id : id, data : data_string})
+        })
+        .then(
+            function(response) {
+            if (response.status != 200) {
+                cl("Error: " + response.status);
+                return;
+            }
+            response.json().then(
+            function(resp_data) {
                 let num;
                 switch (algorithm) {
                     case "popular":
@@ -811,7 +876,7 @@ const get_data = ( function() {
                         break;
                 }
                 cl("Retrieving " + algorithm + " recommendations...");
-                const user_recs = data.content_html;
+                const user_recs = resp_data.content_html;
                 const parsed_content = parse(user_recs);
                 get_id("retr_recs").classList.add("recs_message");
                 if (parsed_content[num].length < 1) {
@@ -837,7 +902,7 @@ const get_data = ( function() {
                         get_id("recs_list").appendChild(p).appendChild(img);
                     });
                 }
-            }
+            })
         });
     });
 
@@ -877,15 +942,22 @@ const get_data = ( function() {
             
             cl("Blast API running...", data);
             
-            $.ajax({
-                type: "POST",
-                url: "/server",
-                data: { id : id, data : data_string },
-                success: function(data) { 
-                    cl(data);
-                }
+            fetch("/server", {
+                method: "post",
+                headers: headers,
+                body: string({id : id, data : data_string})
+            })
+            .then(
+            function(response) {
+            if (response.status != 200) {
+                cl("Error: " + response.status);
+                return;
+            }
+            response.json().then(
+                function(resp_data) {
+                    cl(resp_data);
+                })
             });
         }
     });
-
 });
