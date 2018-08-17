@@ -18,7 +18,7 @@ clear_array = function() {
 }
 
 get_data = ( function() {
-    // clear_array();
+    clear_array();
     fetch("/server", {
         method: "post",
         headers: headers,
