@@ -161,7 +161,6 @@ const get_data = ( function() {
     get_id("send_submit").addEventListener("click", function submit_form() {
         const id = "send";
             cl(id + ".js script initiated.");
-            get_id().value;
         let email = get_id("send_email").value;
         const template = get_id("send_templates").value;
         const send_var = get_id("send_var").value;
