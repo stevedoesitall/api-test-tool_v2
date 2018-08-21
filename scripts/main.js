@@ -1,4 +1,4 @@
-import {get_id, get_class, qsa, parse, string, cl, headers, create_el} from "./squery.js";
+import {get_id, get_class, qsa, parse, string, cl, headers, create_el} from "./ditko.js";
 
 document.addEventListener("DOMContentLoaded", function() {
     const user_lists = [];
@@ -626,7 +626,6 @@ const get_data = ( function() {
             const expire_date = get_id("content_expire").value;
             const price = get_id("content_price").value;
             const inventory = get_id("content_inventory").value;
-            const desc = get_id("content_desc").value;
             const site = get_id("content_site").value;
             const location = get_id("content_location").value;
             const author = get_id("content_author").value;
@@ -657,10 +656,6 @@ const get_data = ( function() {
         
                 if (image) {
                     data.image = image;
-                }
-                        
-                if (desc) {
-                    data.description = desc;
                 }
         
                 if (publish_date) {
