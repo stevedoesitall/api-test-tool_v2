@@ -51,6 +51,10 @@ const data_post = (data) => {
             api_params.author = data_parse.author;
         }
 
+        if (data_parse.description) {
+            api_params.description = data_parse.description;
+        }
+
         if (data_parse.location) {
             api_params.location = data_parse.location;
         }
