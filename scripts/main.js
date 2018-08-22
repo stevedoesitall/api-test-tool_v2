@@ -1,4 +1,4 @@
-import {get_id, get_class, qsa, parse, string, cl, headers, create_el} from "./ditko.js";
+import {get_id, get_class, qsa, parse, string, cl, headers, create_el} from "https://rawgit.com/stevedoesitall/ditkojs/master/ditko.js";
 
 document.addEventListener("DOMContentLoaded", function() {
     const user_lists = [];
