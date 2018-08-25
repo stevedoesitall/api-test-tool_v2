@@ -900,9 +900,7 @@ const get_data = ( function() {
                 else {
                     cl('hi')
                     parsed_content[num].forEach(content => {
-                        get_id("recs_list").innerHTML = "";
-
-                        get_id("recs_list").innerHTML = "<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>"
+                        get_id("recs_list").innerHTML += "<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>"
                     });
                 }
             })
