@@ -902,6 +902,24 @@ const get_data = ( function() {
                     parsed_content[num].forEach(content => {
                         get_id("recs_list").innerHTML += "<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>"
                     });
+
+                    // else {
+                    //     parsed_content[num].forEach(content => {
+                    //         get_id("recs_list").innerHTML = "";
+                    //         const rec_title = create_el("p");
+                    //         const rec_link = create_el("a");
+                    //         const rec_image = create_el("img");
+                    //             rec_link.innerHTML = content.title;
+                    //             rec_link.setAttribute("href", content.url);
+                    //             rec_link.setAttribute("target", "_blank");
+                    //             rec_title.innerHTML = rec_link;
+                    //             rec_image.setAttribute("class", "rec_image").setAttribute("alt", "Image unavailable...").setAttribute("src", content.image);
+                    //             rec_image.setAttribute("alt", "Image unavailable...");
+                    //             rec_image.setAttribute("src", content.image);
+                             
+                    //         get_id("recs_list").innerHTML = "<p><a href='" + content.url + "' target='_blank'>" + content.title + "</a></p><img class='rec_image' alt='Image unavailable...' src='" + content.image + "'>"
+                    //     });
+                    // }
                 }
             })
             .catch(error => cl(error) );
