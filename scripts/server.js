@@ -9,9 +9,11 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 const dir = path.join(__dirname, "../");
+const creds = require("./creds.json");
 
-const api_key = process.env.api_key;
-const api_secret = process.env.api_secret;
+const api_key = process.env.api_key || creds.api_key;
+const api_secret = process.env.api_secret || creds.api_secret;
+
 const vv_key = process.env.vv_key;
 const vv_secret = process.env.vv_secret;
 const sailthru = require("sailthru-client").createSailthruClient(api_key, api_secret);
