@@ -1,5 +1,14 @@
 import {get_id, get_class, qsa, parse, string, cl, headers, create_el} from "https://rawgit.com/stevedoesitall/ditkojs/master/ditko.js";
 
+//Force the site to load in HTTPS
+function secure() {
+    if (window.location.href.substr(0,5) != "https" && window.location.href.indexOf("http://localhost:") == -1) {
+        window.location.href = "https://academy-tester.herokuapp.com/";
+    }
+};
+
+window.onload = secure();
+
 document.addEventListener("DOMContentLoaded", function() {
     const user_lists = [];
     const non_master_lists = [];
