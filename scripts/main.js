@@ -42,7 +42,7 @@ const get_data = ( function() {
             response.json().then(
                 function(resp_data) {
                 const status = "active";
-                const list_convention = "Master List ";
+                const list_convention = "Academy Test List ";
                 const list_length = list_convention.length;    
                 const data_lists = resp_data.lists;
                 data_lists.forEach(list => {
