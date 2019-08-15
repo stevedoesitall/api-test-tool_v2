@@ -10,6 +10,24 @@ const data_post = (data) => {
     const api_params = {};
         api_params.id = data_parse.url;
 
+    let prev_title;
+    let prev_tags;
+
+    sailthru.apiGet("content", 
+        {
+            url: api_params.id
+        }, 
+        function(err,response) {
+            if (err) {
+                console.log(err);
+            }
+            else if (response) {
+                prev_title = response.title;
+                prev_tags = response.tags;
+            }
+        }
+    );
+
     if (content_type == "publish") {
         api_params.keys = {};
             api_params.keys.sku = "SKU" + Math.random().toString(36).substr(2,9);
@@ -25,6 +43,9 @@ const data_post = (data) => {
 
         if (data_parse.tags) {
             api_params.tags = data_parse.tags;
+        }
+        else if (prev_tags.length > 0) {
+            api_params.tags = prev_tags;
         }
 
         if (data_parse.publish_date) {
