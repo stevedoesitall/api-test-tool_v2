@@ -44,9 +44,9 @@ const data_post = (data) => {
         if (data_parse.tags) {
             api_params.tags = data_parse.tags;
         }
-        else if (prev_tags.length > 0) {
-            api_params.tags = prev_tags;
-        }
+        // else if (prev_tags.length > 0) {
+        //     api_params.tags = prev_tags;
+        // }
 
         if (data_parse.publish_date) {
             api_params.date = data_parse.publish_date;
