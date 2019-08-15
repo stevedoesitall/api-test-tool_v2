@@ -13,10 +13,11 @@ const data_post = (data) => {
     const api_params = {};
         api_params.id = data_parse.url;
 
-    let prev_title;
-    let prev_tags;
+    if (content_type == "publish") {
+        
+        let prev_tags;
 
-    sailthru.apiGet("content", 
+        sailthru.apiGet("content", 
         {
             url: api_params.id
         }, 
@@ -25,13 +26,10 @@ const data_post = (data) => {
                 console.log(err);
             }
             else if (response) {
-                prev_title = response.title;
                 prev_tags = response.tags;
             }
-        }
-    );
+        });
 
-    if (content_type == "publish") {
         api_params.keys = {};
             api_params.keys.sku = "SKU" + Math.random().toString(36).substr(2,9);
         
@@ -44,11 +42,14 @@ const data_post = (data) => {
                 api_params.vars[data_parse.var_name] = data_parse.var_val;
         }
 
-        if (data_parse.tags) {
-            api_params.tags = data_parse.tags;
+        if (data_parse.tags && (prev_tags.length > 0)) {
+            api_params.tags = data_parse.tags.concat(prev_tags);
         }
         else if (prev_tags.length > 0) {
             api_params.tags = prev_tags;
+        }
+        else if (data_parse.tags) {
+            api_params.tags = data_parse.tags;
         }
 
         if (data_parse.publish_date) {
