@@ -3,6 +3,9 @@ const data_post = (data) => {
 
     console.log("Content API running...", data);
 
+    //Sailthru variables
+    const sailthru = require("sailthru-client").createSailthruClient(api_key, api_secret);
+
     const data_parse = JSON.parse(data);   
     const api_key = data_parse.api_key;
     const api_secret = data_parse.api_secret;
@@ -44,9 +47,9 @@ const data_post = (data) => {
         if (data_parse.tags) {
             api_params.tags = data_parse.tags;
         }
-        // else if (prev_tags.length > 0) {
-        //     api_params.tags = prev_tags;
-        // }
+        else if (prev_tags.length > 0) {
+            api_params.tags = prev_tags;
+        }
 
         if (data_parse.publish_date) {
             api_params.date = data_parse.publish_date;
@@ -90,10 +93,6 @@ const data_post = (data) => {
     else if (content_type == "respider") {
         api_params.spider = 1;
     }
-
-    //Sailthru variables
-    const sailthru = require("sailthru-client").createSailthruClient(api_key, api_secret);
-
     if (content_type != "delete") {
         sailthru.apiPost("content", 
             api_params, 
