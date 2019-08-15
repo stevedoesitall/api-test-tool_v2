@@ -4,17 +4,17 @@ const data_post = (data) => {
     console.log("Content API running...", data);
 
     //Sailthru variables
-    const sailthru = require("sailthru-client").createSailthruClient(api_key, api_secret);
-
     const data_parse = JSON.parse(data);   
     const api_key = data_parse.api_key;
     const api_secret = data_parse.api_secret;
+    const sailthru = require("sailthru-client").createSailthruClient(api_key, api_secret);
+
     const content_type = data_parse.content_type;
     const api_params = {};
         api_params.id = data_parse.url;
 
     if (content_type == "publish") {
-        
+
         let prev_tags;
 
         sailthru.apiGet("content", 
