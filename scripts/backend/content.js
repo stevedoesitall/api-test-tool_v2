@@ -15,7 +15,7 @@ const data_post = (data) => {
 
     if (content_type == "publish") {
 
-        let prev_tags;
+        const prev_tags = [];
 
         sailthru.apiGet("content", 
         {
@@ -26,7 +26,7 @@ const data_post = (data) => {
                 console.log(err);
             }
             else if (response) {
-                prev_tags = response.tags;
+                prev_tags.concat(response.tags);
             }
         });
 
