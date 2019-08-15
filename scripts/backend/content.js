@@ -26,7 +26,9 @@ const data_post = (data) => {
                 console.log(err);
             }
             else if (response) {
-                prev_tags.concat(response.tags);
+                response.tags.forEach(tag => {
+                    prev_tags.push(tag);
+                });
             }
         });
 
